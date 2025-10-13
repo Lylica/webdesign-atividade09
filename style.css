@@ -1,0 +1,185 @@
+/* Import Inter (para o corpo do texto) e IBM Plex Mono (para código) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400&display=swap');
+
+/* Cores e Estilos do VS Code (Tema Dark+) */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Fonte principal: Inter com fallbacks */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+    /* Cor de fundo principal do Editor */
+    background-color: #1e1e1e;
+    /* Cor do texto geral */
+    color: #d4d4d4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+}
+
+/* Top Bar - Cor da Barra de Título/Status */
+.topbar {
+    height: 30px;
+    background-color: #333333;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 0.9rem;
+    /* Linha sutil de separação */
+    border-bottom: 1px solid #1e1e1e;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar - Cor da Barra Explorer */
+.sidebar {
+    width: 220px;
+    background-color: #252526;
+    border-right: 1px solid #333;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.explorer-title {
+    /* Cor ligeiramente mais opaca para títulos de painel */
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600; /* Títulos são um pouco mais fortes */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Links clicáveis */
+.file-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding: 5px 10px;
+    transition: background-color 0.1s;
+    /* Removido o border-radius para ser mais parecido com a lista do explorer */
+}
+
+/* Hover e Arquivo Ativo (Cores do VS Code) */
+.file-link:hover {
+    background-color: #094771; /* Azul de hover */
+}
+
+/* Ícones SVG */
+.icon-svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Arquivo ativo */
+.file.active .file-link {
+    background-color: #0e639c; /* Azul de seleção */
+    font-weight: 600; /* Negrito para destacar, como o VS Code faz */
+    
+    /* Indicador vertical de seleção do VS Code */
+    border-left: 2px solid #fff;
+    padding-left: 8px; /* Ajuste o padding por causa da borda */
+}
+.file.active .file-link:hover {
+     background-color: #0e639c; /* Mantém a cor de seleção no hover */
+}
+
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 30px 40px; /* Mais padding para a área de conteúdo */
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Cores de Sintaxe */
+.content h1 {
+    /* Cor de função/tipo (ex: className/Function no TS/JS) */
+    color: #569cd6; 
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    /* Cor de tipo/propriedade (ex: Tag HTML/Variável) */
+    color: #4ec9b0;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.content p {
+    margin-bottom: 15px;
+    line-height: 1.7; 
+}
+
+.content ul, .content ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+ol li, ul li {
+    margin-bottom: 8px;
+}
+
+/* Código / exemplos */
+
+/* Estilo para código inline (tag <code>) */
+code {
+    background-color: rgba(100, 100, 100, 0.15); /* Fundo sutilmente cinza */
+    color: #ce9178; /* Cor de String no VSCode para destaque */
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+}
+
+/* Estilo para blocos de código (tag <pre>) */
+pre {
+    /* Usa a cor da sidebar para contraste com o editor */
+    background-color: #252526; 
+    padding: 15px 20px; 
+    border-radius: 4px;
+    margin: 20px 0;
+    overflow-x: auto;
+    /* Garante que o conteúdo preserve espaços e não quebre linha */
+    white-space: pre;
+    font-size: 0.95rem; 
+    line-height: 1.5;
+}
+
+/* Bottom Bar - Cor da Status Bar */
+.bottombar {
+    height: 22px; 
+    background-color: #007acc; /* Cor da Status Bar - Azul */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
