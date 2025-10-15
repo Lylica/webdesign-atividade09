@@ -1,5 +1,5 @@
 // =========================================================
-// 1. VARIÁVEIS E FUNÇÕES GLOBAIS (Simplificadas)
+// 1. VARIÁVEIS E FUNÇÕES GLOBAIS
 // =========================================================
 const bottomBar = document.querySelector('.bottombar span');
 const fileLinks = document.querySelectorAll('.file-link');
@@ -7,49 +7,61 @@ const page = document.documentElement.dataset.page;
 const contentTitle = document.querySelector('#main-title');
 const contentSections = document.querySelectorAll('.content-section');
 let currentActiveLink = null; 
-let currentContentSection = document.querySelector('.content-section.active'); // Começa com o primeiro conteúdo visível
+let currentContentSection = document.querySelector('.content-section.active'); // conteúdo inicial
 
-// Função: Atualiza o status na barra inferior
+// Slide switch
+const toggle = document.getElementById('theme-toggle');
+
+// =========================================================
+// 2. FUNÇÃO: Atualiza a barra de status inferior
+// =========================================================
 function updateStatus(message) {
     if (bottomBar) {
         bottomBar.textContent = `Status: ${message}`;
     }
 }
 
-// NOVO EVENTO: Alterna a visibilidade do conteúdo no HTML
+// =========================================================
+// 3. FUNÇÃO: Alterna a visibilidade do conteúdo no HTML
+// =========================================================
 function switchContent(contentId, newLink) {
-    // 1. Esconde a seção de conteúdo atual
+    // Esconde a seção atual
     if (currentContentSection) {
         currentContentSection.classList.remove('active');
         currentContentSection.setAttribute('hidden', '');
     }
-    
-    // 2. Encontra e mostra a nova seção
+
+    // Mostra a nova seção
     const newSection = document.querySelector(`#${contentId}`);
     if (newSection) {
         newSection.classList.add('active');
         newSection.removeAttribute('hidden');
         currentContentSection = newSection;
 
-        // 3. Atualiza o título e o status
+        // Atualiza título e status
         const sectionTitle = newSection.querySelector('h1').textContent;
         if (contentTitle) contentTitle.textContent = sectionTitle;
         updateStatus(`Editando arquivo: ${newLink.querySelector('.file-name').textContent}`);
+
+        // Scroll suave para o topo
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         updateStatus(`Erro: Conteúdo '${contentId}' não encontrado.`);
     }
 }
 
-// Função: Gerencia o estado ativo do link na sidebar
+// =========================================================
+// 4. FUNÇÃO: Gerencia estado ativo do link na sidebar
+// =========================================================
 function setActiveLink(newLink) {
-    if (currentActiveLink) {
-        currentActiveLink.classList.remove('active');
-    }
+    if (currentActiveLink) currentActiveLink.classList.remove('active');
     newLink.classList.add('active');
     currentActiveLink = newLink;
 }
 
-// Função: Simulação de animação de pasta
+// =========================================================
+// 5. FUNÇÃO: Clique em pasta (abrir/fechar / navegação)
+// =========================================================
 function handleFolderClick(header) {
     const folder = header.closest(".folder");
     const href = header.dataset.href;
@@ -76,19 +88,30 @@ function handleFolderClick(header) {
     }
 }
 
-
 // =========================================================
-// 2. INICIALIZAÇÃO E EVENT LISTENERS
+// 6. INICIALIZAÇÃO E EVENT LISTENERS
 // =========================================================
-
 function initVSLearn() {
-    
-    // Carrega o link ativo inicial
+
+    // --- Tema claro/escuro persistente ---
+    if (toggle) {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            document.body.classList.toggle('light-theme', toggle.checked);
+            localStorage.setItem('theme', toggle.checked ? 'light' : 'dark');
+        });
+    }
+
+    // --- Inicializa link ativo e título no HTML ---
     if (page === 'html') {
         const initialLink = document.querySelector('.file-link.active');
         if (initialLink) {
             currentActiveLink = initialLink;
-            // Atualiza o título e status com base no conteúdo inicial
             const initialSection = document.querySelector(`#${initialLink.dataset.contentId}`);
             if (initialSection) {
                 const sectionTitle = initialSection.querySelector('h1').textContent;
@@ -97,48 +120,47 @@ function initVSLearn() {
             updateStatus(`Editando arquivo: ${initialLink.querySelector('.file-name').textContent}`);
         }
     }
-    
-    // Loop principal para todos os links na sidebar
+
+    // --- Eventos para todos os links ---
     fileLinks.forEach(link => {
-        // --- EVENTO: Clique no Link (Alterna conteúdo ou navega) ---
+
+        // Clique
         link.addEventListener("click", (e) => {
-            if (link.tagName === 'A') {
-                return; 
-            }
-            
-            // Se for um link de pasta
+            if (link.tagName === 'A') return; // ignora links externos
+
+            // Se for pasta
             if (link.classList.contains('folder-header')) {
                 e.preventDefault();
                 handleFolderClick(link); 
                 return;
             }
-            
-            // Se for um link de subitem de conteúdo (mudança de aba)
+
+            // Se for subitem de conteúdo
             const contentId = link.dataset.contentId;
             if (contentId) {
                 e.preventDefault();
                 setActiveLink(link);
-                switchContent(contentId, link); // NOVO: Troca o conteúdo no HTML
+                switchContent(contentId, link);
             }
         });
-        
-        // --- EVENTO EXTRA: Mouseover para Status Bar ---
+
+        // Hover: atualiza status bar
         link.addEventListener('mouseover', () => {
             const fileName = link.querySelector('.file-name').textContent;
             updateStatus(`Visualizando: ${fileName}`); 
         });
-        
+
         link.addEventListener('mouseout', () => {
             if (currentActiveLink) {
-                 const currentFileName = currentActiveLink.querySelector('.file-name').textContent;
+                const currentFileName = currentActiveLink.querySelector('.file-name').textContent;
                 updateStatus(`Editando arquivo: ${currentFileName}`);
             } else {
-                 updateStatus('Pronto');
+                updateStatus('Pronto');
             }
         });
     });
 
-    // --- EVENTO EXTRA: Manipulação de Scroll ---
+    // --- Sombra na topbar ao scroll ---
     window.addEventListener('scroll', () => {
         const topbar = document.querySelector('.topbar');
         if (window.scrollY > 5) {
@@ -147,14 +169,14 @@ function initVSLearn() {
             topbar.style.boxShadow = 'none';
         }
     });
-    
-    // Garante que, ao voltar pelo navegador, o estado é reiniciado
+
+    // --- Força reload se o usuário voltar pelo histórico ---
     window.addEventListener("pageshow", (event) => {
-        if (event.persisted) {
-            window.location.reload();
-        }
+        if (event.persisted) window.location.reload();
     });
 }
 
-// Inicia a aplicação
+// =========================================================
+// 7. INICIA APLICAÇÃO
+// =========================================================
 document.addEventListener("DOMContentLoaded", initVSLearn);
