@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-page="index">
 <head>
+    <!-- Metadados básicos e configuração de responsividade -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>VSCode Simulado - Index</title>
+
+    <!-- Estilos principais -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Barra superior simulando o cabeçalho do VSCode -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn</span>
     </header>
 
     <div class="container">
+        <!-- Painel lateral simulando o "Explorador de Arquivos" -->
         <aside class="sidebar">
             <div class="explorer-title">EXPLORADOR</div>
 
             <ul class="file-tree">
+                <!-- Arquivo ativo -->
                 <li class="file">
                     <a href="index.html" class="file-link active">
                         <img src="icons/vscode.svg" alt="Ícone do Index" class="icon-svg">
@@ -23,6 +30,7 @@
                     </a>
                 </li>
 
+                <!-- Pastas dos módulos -->
                 <li class="folder closed">
                     <div class="folder-header file-link" data-href="html.html">
                         <span class="folder-arrow">▸</span>
@@ -57,64 +65,68 @@
             </ul>
         </aside>
 
+        <!-- Área principal do conteúdo -->
         <main class="content">
             <h1>A Base Completa: Sua Jornada Full-Stack VSLearn</h1>
 
             <p class="intro">
-                O VSLearn simula o ambiente do Visual Studio Code para lhe dar uma imersão prática e focada. Aqui, você não apenas lê sobre código, você "abre" e "edita" arquivos virtuais, construindo uma base sólida para o desenvolvimento web, sem a complexidade de frameworks avançados no início.
+                O VSLearn simula o ambiente do Visual Studio Code para lhe dar uma imersão prática e focada.
             </p>
 
+            <!-- Apresentação do método de aprendizado -->
             <section class="proposta">
                 <h2>O Método VSLearn: Foco no Essencial</h2>
                 <p>
-                    Nossa metodologia se concentra em dominar os pilares de cada tecnologia. Você aprenderá a semântica, a sintaxe fundamental e as melhores práticas que são independentes de qualquer biblioteca. A chave para evoluir é ter o básico bem feito.
+                    Nossa metodologia se concentra em dominar os pilares de cada tecnologia.
                 </p>
                 <div class="placeholder">
-                    <p>
-                        Para começar, abra o painel EXPLORADOR à esquerda e selecione a pasta HTML.
-                    </p>
+                    <p>Para começar, abra o painel EXPLORADOR e selecione a pasta HTML.</p>
                 </div>
             </section>
 
+            <!-- Lista dos módulos principais -->
             <section class="modulos">
                 <h2>Módulos Essenciais (O que você irá dominar)</h2>
                 <ul>
                     <li>
                         <strong>HTML</strong> 
                         <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg-inline">
-                        <span class="descricao-modulo">- Estrutura e Semântica. Aprenda a organizar o conteúdo da web (esqueleto) usando tags corretas (Header, Section, Article, Footer) para garantir acessibilidade e SEO.</span>
+                        <span class="descricao-modulo">- Estrutura e Semântica.</span>
                     </li>
                     <li>
                         <strong>CSS</strong> 
                         <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg-inline">
-                        <span class="descricao-modulo">- Estilização e Layouts Modernos. Domine Seletores, o Box Model, e as bases de Flexbox e Grid para criar designs responsivos e visualmente atraentes.</span>
+                        <span class="descricao-modulo">- Estilização e Layouts Modernos.</span>
                     </li>
                     <li>
                         <strong>JavaScript (JS)</strong> 
                         <img src="icons/javascript.svg" alt="Ícone JavaScript" class="icon-svg-inline">
-                        <span class="descricao-modulo">- Lógica e Interatividade (DOM). Entenda tipos de dados, funções, loops, e como o JS manipula o HTML e CSS em tempo real (o coração da web moderna).</span>
+                        <span class="descricao-modulo">- Lógica e Interatividade (DOM).</span>
                     </li>
                     <li>
                         <strong>Backend</strong> 
                         <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg-inline">
-                        <span class="descricao-modulo">- Conceitos de Servidor e Dados. Introdução a como dados são armazenados, o que é uma API (Requisições HTTP) e a diferença entre o que roda no cliente e no servidor.</span>
+                        <span class="descricao-modulo">- Conceitos de Servidor e Dados.</span>
                     </li>
                 </ul>
             </section>
 
+            <!-- Encerramento e chamada à ação -->
             <section class="comece-agora">
                 <h2>Sua Primeira Lição Espera</h2>
                 <p>
-                    O desenvolvimento web exige prática. Clique no diretório HTML para abrir o módulo e inicie a lição "O que é". Boas-vindas à comunidade de código!
+                    Clique no diretório HTML para abrir o módulo e iniciar sua jornada.
                 </p>
             </section>
         </main>
     </div>
 
+    <!-- Barra inferior com status -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
+    <!-- Script principal -->
     <script src="script.js"></script>
 </body>
 </html>
