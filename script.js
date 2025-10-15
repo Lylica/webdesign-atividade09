@@ -38,10 +38,13 @@ function switchContent(contentId, newLink) {
         newSection.removeAttribute('hidden');
         currentContentSection = newSection;
 
-        // Atualiza título e status
+        // Atualiza título
         const sectionTitle = newSection.querySelector('h1').textContent;
         if (contentTitle) contentTitle.textContent = sectionTitle;
-        updateStatus(`Editando arquivo: ${newLink.querySelector('.file-name').textContent}`);
+
+        // Atualiza status (mensagem personalizada se existir)
+        const statusMessage = newLink.dataset.status || `Editando arquivo: ${newLink.querySelector('.file-name').textContent}`;
+        updateStatus(statusMessage);
 
         // Scroll suave para o topo
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -117,7 +120,8 @@ function initVSLearn() {
                 const sectionTitle = initialSection.querySelector('h1').textContent;
                 if (contentTitle) contentTitle.textContent = sectionTitle;
             }
-            updateStatus(`Editando arquivo: ${initialLink.querySelector('.file-name').textContent}`);
+            const statusMessage = initialLink.dataset.status || `Editando arquivo: ${initialLink.querySelector('.file-name').textContent}`;
+            updateStatus(statusMessage);
         }
     }
 
@@ -146,14 +150,14 @@ function initVSLearn() {
 
         // Hover: atualiza status bar
         link.addEventListener('mouseover', () => {
-            const fileName = link.querySelector('.file-name').textContent;
-            updateStatus(`Visualizando: ${fileName}`); 
+            const statusMessage = link.dataset.status || `Visualizando: ${link.querySelector('.file-name').textContent}`;
+            updateStatus(statusMessage); 
         });
 
         link.addEventListener('mouseout', () => {
             if (currentActiveLink) {
-                const currentFileName = currentActiveLink.querySelector('.file-name').textContent;
-                updateStatus(`Editando arquivo: ${currentFileName}`);
+                const currentStatus = currentActiveLink.dataset.status || `Editando arquivo: ${currentActiveLink.querySelector('.file-name').textContent}`;
+                updateStatus(currentStatus);
             } else {
                 updateStatus('Pronto');
             }
