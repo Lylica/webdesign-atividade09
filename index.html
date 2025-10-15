@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-page="index">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,65 +14,100 @@
     <div class="container">
         <aside class="sidebar">
             <div class="explorer-title">EXPLORADOR</div>
-            <ul>
-                <li class="file active">
-                    <a href="index.html" class="file-link">
-                        <img src="icons/vscode.svg" alt="Ícone index" class="icon-svg">
+
+            <ul class="file-tree">
+                <li class="file">
+                    <a href="index.html" class="file-link active">
+                        <img src="icons/vscode.svg" alt="Ícone do Index" class="icon-svg">
                         <span class="file-name">index</span>
                     </a>
                 </li>
-                <li class="file">
-                    <a href="html.html" class="file-link">
+
+                <li class="folder closed">
+                    <div class="folder-header file-link" data-href="html.html">
+                        <span class="folder-arrow">▸</span>
                         <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg">
                         <span class="file-name">HTML</span>
-                    </a>
+                    </div>
                 </li>
-                <li class="file">
-                    <a href="css.html" class="file-link">
+
+                <li class="folder closed">
+                    <div class="folder-header file-link" data-href="css.html">
+                        <span class="folder-arrow">▸</span>
                         <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg">
                         <span class="file-name">CSS</span>
-                    </a>
+                    </div>
                 </li>
-                <li class="file">
-                    <a href="js.html" class="file-link">
-                        <img src="icons/javascript.svg" alt="Ícone JS" class="icon-svg">
+
+                <li class="folder closed">
+                    <div class="folder-header file-link" data-href="js.html">
+                        <span class="folder-arrow">▸</span>
+                        <img src="icons/javascript.svg" alt="Ícone JavaScript" class="icon-svg">
                         <span class="file-name">JavaScript</span>
-                    </a>
+                    </div>
                 </li>
-                <li class="file">
-                    <a href="backend.html" class="file-link">
+
+                <li class="folder closed">
+                    <div class="folder-header file-link" data-href="backend.html">
+                        <span class="folder-arrow">▸</span>
                         <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg">
                         <span class="file-name">Backend</span>
-                    </a>
+                    </div>
                 </li>
             </ul>
         </aside>
 
         <main class="content">
-            <h1>Bem-vindo ao VSLearn!</h1>
-            <p>Este site foi criado para te guiar pelo mundo da programação web. Cada arquivo na sidebar representa um artigo completo sobre uma linguagem ou tecnologia, seguindo um padrão de tópicos para facilitar a aprendizagem.</p>
+            <h1>A Base Completa: Sua Jornada Full-Stack VSLearn</h1>
 
-            <h2>Como cada artigo é organizado:</h2>
-            <ol>
-                <li><strong>O que é:</strong> Definição da linguagem ou tecnologia.</li>
-                <li><strong>História / Evolução:</strong> Contexto histórico e evolução ao longo do tempo.</li>
-                <li><strong>Como funciona:</strong> Conceitos básicos, arquitetura e princípios de funcionamento.</li>
-                <li><strong>Parte básica / Sintaxe:</strong> Estrutura, elementos principais e exemplos de código simples.</li>
-                <li><strong>Exemplos práticos:</strong> Trechos de código e demonstrações aplicáveis.</li>
-                <li><strong>Boas práticas / Dicas:</strong> Recomendações importantes para escrever código limpo e eficiente.</li>
-            </ol>
+            <p class="intro">
+                O VSLearn simula o ambiente do Visual Studio Code para lhe dar uma imersão prática e focada. Aqui, você não apenas lê sobre código, você "abre" e "edita" arquivos virtuais, construindo uma base sólida para o desenvolvimento web, sem a complexidade de frameworks avançados no início.
+            </p>
 
-            <h2>Artigos disponíveis:</h2>
-            <ul>
-                <li><strong>HTML:</strong> Estrutura de páginas, elementos básicos, tags, listas, links, formulários e exemplos.</li>
-                <li><strong>CSS:</strong> Estilização de páginas, cores, fontes, layout, flexbox, grid e efeitos visuais.</li>
-                <li><strong>JavaScript:</strong> Interatividade, manipulação do DOM, eventos, funções e exemplos de prática.</li>
-                <li><strong>Backend:</strong> Servidores, APIs, banco de dados, lógica de processamento, Node.js e outras tecnologias.</li>
-            </ul>
+            <section class="proposta">
+                <h2>O Método VSLearn: Foco no Essencial</h2>
+                <p>
+                    Nossa metodologia se concentra em dominar os pilares de cada tecnologia. Você aprenderá a semântica, a sintaxe fundamental e as melhores práticas que são independentes de qualquer biblioteca. A chave para evoluir é ter o básico bem feito.
+                </p>
+                <div class="placeholder">
+                    <p>
+                        Para começar, abra o painel EXPLORADOR à esquerda e selecione a pasta HTML.
+                    </p>
+                </div>
+            </section>
 
-            <p>Clique nos arquivos à esquerda para abrir cada artigo e começar a explorar. Cada um segue este padrão de tópicos, permitindo aprender de forma consistente e organizada.</p>
+            <section class="modulos">
+                <h2>Módulos Essenciais (O que você irá dominar)</h2>
+                <ul>
+                    <li>
+                        <strong>HTML</strong> 
+                        <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg-inline">
+                        <span class="descricao-modulo">- Estrutura e Semântica. Aprenda a organizar o conteúdo da web (esqueleto) usando tags corretas (Header, Section, Article, Footer) para garantir acessibilidade e SEO.</span>
+                    </li>
+                    <li>
+                        <strong>CSS</strong> 
+                        <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg-inline">
+                        <span class="descricao-modulo">- Estilização e Layouts Modernos. Domine Seletores, o Box Model, e as bases de Flexbox e Grid para criar designs responsivos e visualmente atraentes.</span>
+                    </li>
+                    <li>
+                        <strong>JavaScript (JS)</strong> 
+                        <img src="icons/javascript.svg" alt="Ícone JavaScript" class="icon-svg-inline">
+                        <span class="descricao-modulo">- Lógica e Interatividade (DOM). Entenda tipos de dados, funções, loops, e como o JS manipula o HTML e CSS em tempo real (o coração da web moderna).</span>
+                    </li>
+                    <li>
+                        <strong>Backend</strong> 
+                        <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg-inline">
+                        <span class="descricao-modulo">- Conceitos de Servidor e Dados. Introdução a como dados são armazenados, o que é uma API (Requisições HTTP) e a diferença entre o que roda no cliente e no servidor.</span>
+                    </li>
+                </ul>
+            </section>
 
-            <p>Boa aprendizagem! 🚀</p>
+            <section class="comece-agora">
+                <h2>Sua Primeira Lição Espera</h2>
+                <p>
+                    O desenvolvimento web exige prática. Clique no diretório HTML para abrir o módulo e inicie a lição "O que é". Boas-vindas à comunidade de código!
+                </p>
+            </section>
         </main>
     </div>
 
