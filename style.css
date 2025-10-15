@@ -69,6 +69,7 @@ body {
 }
 
 .file-link {
+    /* É crucial que este seja um bloco de flex ou block para preencher a largura */
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -76,6 +77,8 @@ body {
     width: 100%;
     padding: 5px 10px;
     transition: background-color 0.15s ease;
+    /* Ajuste para acomodar a linha ativa (pseudo-elemento) */
+    position: relative; 
 }
 
 /* Hover em arquivos e pastas */
@@ -84,12 +87,23 @@ body {
     cursor: pointer;
 }
 
-/* Estilo para o arquivo/pasta atualmente ativa (via JavaScript) */
+/* Estilo para o arquivo/pasta atualmente ativa */
 .file-link.active {
     background-color: #0060ad;
-    border-left: 2px solid #fff; /* Linha de destaque */
-    padding-left: 8px; /* Ajuste para compensar a borda */
+    /* Remove a borda e padding-left de compensação antigos */
+    /* padding-left: 10px; */ 
 }
+
+.file-link.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 2px; /* Largura da linha de destaque */
+    background-color: #fff;
+}
+
 .file-link.active:hover {
     background-color: #0060ad;
 }
@@ -104,7 +118,7 @@ body {
     vertical-align: middle;
 }
 
-/* Estilo para os ícones que aparecem inline no conteúdo principal */
+/* Ícones que aparecem inline no conteúdo principal (reintroduzido) */
 .icon-svg-inline {
     height: 1.2em;
     width: 1.2em;
@@ -112,46 +126,25 @@ body {
     margin: 0 5px;
 }
 
+
 /* =========================================================
-   Pastas e Setas (LÓGICA CORRETA AGORA)
+   Pastas e Setas
    ========================================================= */
 .folder-arrow {
     display: inline-block;
     width: 15px;
     text-align: center;
     transition: transform 0.35s ease;
-    /* ESTADO PADRÃO (FECHADO / '▸'): Sem rotação */
     transform: rotate(0deg); 
 }
 
-/* Quando a pasta está FECHADA (index.html), rotaciona 0 (mantém '▸') */
-.folder.closed .folder-arrow {
-    transform: rotate(0deg); 
-}
-
-/* Quando a pasta está ABERTA (html.html), rotaciona 90 graus (transforma '▸' em seta para baixo) */
+/* Quando a pasta está ABERTA ('▸' transforma em seta para baixo) */
 .folder.open .folder-arrow {
     transform: rotate(90deg); 
 }
 
-/* A classe rotated não é mais essencial, mas é mantida por segurança */
-.folder-arrow.rotated {
-    transform: rotate(90deg);
-}
-
-/* Transição suave de fade */
-.folder,
-.file {
-    transition: opacity 0.3s ease;
-}
-
-.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
 /* =========================================================
-   Subpastas (usado em html.html)
+   Subpastas (Itens da árvore de arquivos)
    ========================================================= */
 .sub-items {
     list-style: none;
@@ -168,7 +161,7 @@ body {
 }
 
 /* =========================================================
-   Conteúdo principal (Ajustes de Legibilidade)
+   Conteúdo principal (Legibilidade)
    ========================================================= */
 .content {
     flex: 1;
@@ -180,44 +173,38 @@ body {
 
 .content h1 {
     color: #569cd6;
-    margin-bottom: 25px; /* Ligeiro aumento para separar do primeiro parágrafo */
+    margin-bottom: 25px; 
 }
 
 .content h2 {
     color: #4ec9b0;
-    margin-top: 50px; /* **AUMENTADO** para maior separação de tópicos principais */
+    margin-top: 50px; 
     margin-bottom: 20px;
 }
 
-.content h3 { /* Adicionando estilo para H3 que não existia antes */
-    color: #c586c0;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
 .content p {
-    margin-bottom: 20px; /* **AUMENTADO** para separar melhor os parágrafos */
+    margin-bottom: 20px; 
     line-height: 1.7;
 }
 
 .content ul,
 .content ol {
-    margin-bottom: 25px; /* **ADICIONADO** margem para separar listas do próximo elemento */
+    margin-bottom: 25px; 
     padding-left: 20px;
 }
 
 .content li {
-    margin-bottom: 8px; /* Espaçamento entre itens da lista */
+    margin-bottom: 8px; 
 }
 
-.content hr { /* **ADICIONADO** estilo para HR (separador temático) */
+.content hr { 
     border: 0;
     height: 1px;
     background-color: #3e3e3e;
-    margin: 35px 0; /* Espaçamento grande para quebras temáticas visíveis */
+    margin: 35px 0; 
 }
 
-.placeholder {
+.placeholder { /* Mantido para a caixa de destaque na index.html */
     opacity: 0.85;
     border: 1px dashed #555;
     padding: 15px;
@@ -227,13 +214,13 @@ body {
     font-style: italic;
 }
 
-/* Estilo para blocos de código (simulação de editor) */
+
 .content pre {
     background-color: #1a1a1a;
     padding: 15px;
     border-radius: 4px;
     overflow-x: auto;
-    margin: 25px 0; /* Ajustado para separar */
+    margin: 25px 0; 
     line-height: 1.5;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.9rem;
@@ -259,31 +246,60 @@ body {
 }
 
 /* =========================================================
-   Tema Claro
+   TEMA CLARO (CORES REFINADAS)
    ========================================================= */
 body.light-theme {
-    background-color: #f5f5f5;
-    color: #1e1e1e;
-}
-
-body.light-theme .sidebar {
-    background-color: #e0e0e0;
-    color: #1e1e1e;
+    background-color: #FFFFFF; 
+    color: #333333; 
 }
 
 body.light-theme .topbar,
 body.light-theme .bottombar {
-    background-color: #dcdcdc;
-    color: #1e1e1e;
+    background-color: #EAEAEA;
+    color: #333333;
+    border-bottom: 1px solid #ccc;
 }
 
+body.light-theme .sidebar {
+    background-color: #F3F3F3; 
+    color: #333333;
+    border-right: 1px solid #ccc;
+}
+
+body.light-theme .explorer-title {
+    color: #999;
+}
+
+/* Ajuste do Link Ativo no Modo Claro */
 body.light-theme .file-link.active {
-    background-color: #007acc;
-    border-left: 2px solid #1e1e1e;
+    background-color: #eeeeee; /* Fundo mais sutil, menos invasivo que o azul */
+}
+body.light-theme .file-link.active::before {
+    background-color: #228be6; /* Linha de destaque azul */
 }
 
 body.light-theme .file-link:hover {
-    background-color: #4f94d4;
+    background-color: #e0e0e0; /* Hover mais suave */
+}
+
+body.light-theme .content h1 {
+    color: #007acc; 
+}
+body.light-theme .content h2 {
+    color: #2196F3; 
+}
+body.light-theme .content hr { 
+    background-color: #dddddd;
+}
+body.light-theme .content pre {
+    background-color: #eeeeee;
+}
+body.light-theme .content code {
+    color: #333333;
+}
+body.light-theme .placeholder { /* Ajuste do Placeholder no modo claro */
+    border: 1px dashed #999;
+    background-color: #f7f7f7;
 }
 
 /* =========================================================
@@ -298,7 +314,7 @@ body.light-theme .file-link:hover {
 }
 
 body.light-theme .theme-switch {
-    color: #1e1e1e;
+    color: #333333;
 }
 
 .switch {
@@ -323,6 +339,10 @@ body.light-theme .theme-switch {
     background-color: #555;
     transition: 0.4s;
     border-radius: 20px;
+}
+
+body.light-theme .slider {
+    background-color: #ccc;
 }
 
 .slider:before {
