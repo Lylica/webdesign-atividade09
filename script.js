@@ -2,15 +2,13 @@
 // 1. VARIÁVEIS E FUNÇÕES GLOBAIS
 // =========================================================
 const bottomBar = document.querySelector('.bottombar span');
-const fileLinks = document.querySelectorAll('.file-link');
+const fileLinks = document.querySelectorAll('.file-link, .folder-header');
 const page = document.documentElement.dataset.page;
 const contentTitle = document.querySelector('#main-title');
 const contentSections = document.querySelectorAll('.content-section');
 let currentActiveLink = null; 
 let currentContentSection = document.querySelector('.content-section.active'); // conteúdo inicial
-
-// Slide switch
-const toggle = document.getElementById('theme-toggle');
+const toggle = document.getElementById('theme-toggle'); // slide switch
 
 // =========================================================
 // 2. FUNÇÃO: Atualiza a barra de status inferior
@@ -39,11 +37,11 @@ function switchContent(contentId, newLink) {
         currentContentSection = newSection;
 
         // Atualiza título
-        const sectionTitle = newSection.querySelector('h1').textContent;
+        const sectionTitle = newSection.querySelector('h1')?.textContent || '';
         if (contentTitle) contentTitle.textContent = sectionTitle;
 
-        // Atualiza status (mensagem personalizada se existir)
-        const statusMessage = newLink.dataset.status || `Editando arquivo: ${newLink.querySelector('.file-name').textContent}`;
+        // Atualiza status
+        const statusMessage = newLink.dataset.status || `Editando arquivo: ${newLink.querySelector('.file-name')?.textContent || ''}`;
         updateStatus(statusMessage);
 
         // Scroll suave para o topo
@@ -63,32 +61,27 @@ function setActiveLink(newLink) {
 }
 
 // =========================================================
-// 5. FUNÇÃO: Clique em pasta (abrir/fechar / navegação)
+// 5. FUNÇÃO: Gerencia clique em pastas/links com data-href
 // =========================================================
 function handleFolderClick(header) {
     const folder = header.closest(".folder");
     const href = header.dataset.href;
+    if (!href) return;
 
-    if (page === "index") {
-        folder.classList.add("open");
-        document.querySelectorAll(".folder, .file")
-            .forEach(item => {
-                if (item !== folder) item.classList.add("fade-out");
-            });
+    // Efeito visual
+    folder.classList.toggle("open");
+    const arrow = folder.querySelector(".folder-arrow");
+    if (arrow) arrow.classList.toggle("rotated");
 
-        setTimeout(() => {
-            window.location.href = href;
-        }, 350);
-    } 
-    else if (page === "html" && href === 'index.html') {
-        folder.classList.remove("open");
-        const arrow = folder.querySelector(".folder-arrow");
-        arrow.classList.remove("rotated"); 
+    // Fade-out em outros itens
+    document.querySelectorAll(".folder, .file").forEach(item => {
+        if (item !== folder) item.classList.toggle("fade-out");
+    });
 
-        setTimeout(() => {
-            window.location.href = href;
-        }, 300);
-    }
+    // Navegação com delay para efeito visual
+    setTimeout(() => {
+        window.location.href = href;
+    }, 300);
 }
 
 // =========================================================
@@ -110,22 +103,22 @@ function initVSLearn() {
         });
     }
 
-    // --- Inicializa link ativo e título no HTML ---
+    // --- Inicializa link ativo e título ---
     if (page === 'html') {
         const initialLink = document.querySelector('.file-link.active');
         if (initialLink) {
             currentActiveLink = initialLink;
             const initialSection = document.querySelector(`#${initialLink.dataset.contentId}`);
             if (initialSection) {
-                const sectionTitle = initialSection.querySelector('h1').textContent;
+                const sectionTitle = initialSection.querySelector('h1')?.textContent || '';
                 if (contentTitle) contentTitle.textContent = sectionTitle;
             }
-            const statusMessage = initialLink.dataset.status || `Editando arquivo: ${initialLink.querySelector('.file-name').textContent}`;
+            const statusMessage = initialLink.dataset.status || `Editando arquivo: ${initialLink.querySelector('.file-name')?.textContent || ''}`;
             updateStatus(statusMessage);
         }
     }
 
-    // --- Eventos para todos os links ---
+    // --- Eventos para links e pastas ---
     fileLinks.forEach(link => {
 
         // Clique
@@ -135,7 +128,7 @@ function initVSLearn() {
             // Se for pasta
             if (link.classList.contains('folder-header')) {
                 e.preventDefault();
-                handleFolderClick(link); 
+                handleFolderClick(link);
                 return;
             }
 
@@ -150,13 +143,13 @@ function initVSLearn() {
 
         // Hover: atualiza status bar
         link.addEventListener('mouseover', () => {
-            const statusMessage = link.dataset.status || `Visualizando: ${link.querySelector('.file-name').textContent}`;
+            const statusMessage = link.dataset.status || `Visualizando: ${link.querySelector('.file-name')?.textContent || ''}`;
             updateStatus(statusMessage); 
         });
 
         link.addEventListener('mouseout', () => {
             if (currentActiveLink) {
-                const currentStatus = currentActiveLink.dataset.status || `Editando arquivo: ${currentActiveLink.querySelector('.file-name').textContent}`;
+                const currentStatus = currentActiveLink.dataset.status || `Editando arquivo: ${currentActiveLink.querySelector('.file-name')?.textContent || ''}`;
                 updateStatus(currentStatus);
             } else {
                 updateStatus('Pronto');
@@ -174,7 +167,7 @@ function initVSLearn() {
         }
     });
 
-    // --- Força reload se o usuário voltar pelo histórico ---
+    // --- Reload se usuário voltar pelo histórico ---
     window.addEventListener("pageshow", (event) => {
         if (event.persisted) window.location.reload();
     });
