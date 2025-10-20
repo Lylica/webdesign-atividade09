@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-page="js">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VSCode Simulado - JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Barra superior fixa -->
+    <header class="topbar">
+        <span>Aprenda Web - VSLearn (JavaScript)</span>
+    </header>
+
+    <div class="container">
+        <!-- Painel lateral: explorador de arquivos -->
+        <aside class="sidebar">
+            <div class="explorer-title">EXPLORADOR</div>
+            <ul class="file-tree">
+                <!-- Pasta JavaScript aberta -->
+                <li class="folder open">
+                    <div class="folder-header file-link" data-href="index.html">
+                        <span class="folder-arrow">▸</span>
+                        <img src="icons/javascript.svg" alt="Ícone JS" class="icon-svg" />
+                        <span class="file-name">JavaScript</span>
+                    </div>
+                    <!-- Subitens do módulo JS -->
+                    <ul class="sub-items visible" data-module="js">
+                        <li class="file">
+                            <div class="file-link active" data-content-id="introducao-js" data-status="Introdução ao JavaScript">
+                                <span class="file-name">Introdução</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="sintaxe-basica-js" data-status="Sintaxe básica e variáveis">
+                                <span class="file-name">Sintaxe Básica</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="funcoes-js" data-status="Funções e escopo">
+                                <span class="file-name">Funções</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="objetos-js" data-status="Objetos e arrays">
+                                <span class="file-name">Objetos / Arrays</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="dom-js" data-status="Manipulação do DOM">
+                                <span class="file-name">DOM</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="eventos-js" data-status="Eventos e interatividade">
+                                <span class="file-name">Eventos</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="assincronismo-js" data-status="Promises e Async/Await">
+                                <span class="file-name">Assincronismo</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="boas-praticas-js" data-status="Boas práticas de JS">
+                                <span class="file-name">Boas Práticas</span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Alternar tema -->
+            <div class="theme-switch">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle" />
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-label">Tema Claro</span>
+            </div>
+        </aside>
+
+        <!-- Área principal -->
+        <main class="content">
+            <!-- SEÇÃO 1 -->
+            <section id="introducao-js" class="content-section active">
+                <h1>JavaScript: Linguagem de Programação da Web</h1>
+                <p>
+                    JavaScript é a linguagem que adiciona interatividade, lógica e dinamismo às páginas web.  
+                    Ele é executado no navegador e também pode ser usado no servidor (Node.js).
+                </p>
+                <hr />
+                <h2>Funções Principais</h2>
+                <ul>
+                    <li>Manipular o DOM (elementos HTML).</li>
+                    <li>Responder a eventos de usuário.</li>
+                    <li>Fazer requisições a APIs.</li>
+                    <li>Executar lógica de programação completa.</li>
+                </ul>
+
+                <h2>Exemplo Básico</h2>
+                <pre><code class="language-js">
+alert("Olá, mundo!");
+document.querySelector("h1").style.color = "blue";
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 2 -->
+            <section id="sintaxe-basica-js" class="content-section" hidden>
+                <h1>Sintaxe Básica do JavaScript</h1>
+                <p>
+                    O JavaScript usa variáveis, operadores, condicionais e loops semelhantes a outras linguagens.
+                </p>
+                <hr />
+                <h2>Variáveis</h2>
+                <pre><code class="language-js">
+let nome = "Pedro";
+const idade = 20;
+var ativo = true;
+                </code></pre>
+
+                <h2>Condicionais</h2>
+                <pre><code class="language-js">
+if (idade >= 18) {
+    console.log("Maior de idade");
+} else {
+    console.log("Menor de idade");
+}
+                </code></pre>
+
+                <h2>Loops</h2>
+                <pre><code class="language-js">
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 3 -->
+            <section id="funcoes-js" class="content-section" hidden>
+                <h1>Funções e Escopo</h1>
+                <p>Funções permitem reutilizar código e organizar lógica.</p>
+                <hr />
+                <h2>Declaração e chamada</h2>
+                <pre><code class="language-js">
+function somar(a, b) {
+    return a + b;
+}
+console.log(somar(3, 4));
+                </code></pre>
+
+                <h2>Funções de seta (arrow functions)</h2>
+                <pre><code class="language-js">
+const dobro = x => x * 2;
+console.log(dobro(5));
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 4 -->
+            <section id="objetos-js" class="content-section" hidden>
+                <h1>Objetos e Arrays</h1>
+                <p>Objetos armazenam dados em pares chave/valor e arrays armazenam listas ordenadas.</p>
+                <hr />
+                <h2>Objetos</h2>
+                <pre><code class="language-js">
+const pessoa = {
+    nome: "Ana",
+    idade: 25,
+    saudacao() {
+        console.log("Olá, " + this.nome);
+    }
+};
+pessoa.saudacao();
+                </code></pre>
+
+                <h2>Arrays</h2>
+                <pre><code class="language-js">
+const frutas = ["maçã", "banana", "uva"];
+frutas.forEach(f => console.log(f));
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 5 -->
+            <section id="dom-js" class="content-section" hidden>
+                <h1>Manipulação do DOM</h1>
+                <p>O DOM (Document Object Model) representa a estrutura do HTML como objetos manipuláveis via JS.</p>
+                <hr />
+                <pre><code class="language-js">
+const titulo = document.querySelector("h1");
+titulo.textContent = "Título alterado por JavaScript";
+titulo.style.color = "red";
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 6 -->
+            <section id="eventos-js" class="content-section" hidden>
+                <h1>Eventos e Interatividade</h1>
+                <p>Eventos permitem responder a ações do usuário (cliques, teclas, rolagem, etc.).</p>
+                <hr />
+                <pre><code class="language-js">
+const botao = document.querySelector("button");
+botao.addEventListener("click", () => {
+    alert("Botão clicado!");
+});
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 7 -->
+            <section id="assincronismo-js" class="content-section" hidden>
+                <h1>Assincronismo: Promises e Async/Await</h1>
+                <p>O JavaScript executa tarefas assíncronas para evitar travamentos e melhorar desempenho.</p>
+                <hr />
+                <h2>Promises</h2>
+                <pre><code class="language-js">
+fetch("https://api.exemplo.com/dados")
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+                </code></pre>
+
+                <h2>Async/Await</h2>
+                <pre><code class="language-js">
+async function carregarDados() {
+    try {
+        const res = await fetch("https://api.exemplo.com/dados");
+        const data = await res.json();
+        console.log(data);
+    } catch (erro) {
+        console.error(erro);
+    }
+}
+carregarDados();
+                </code></pre>
+            </section>
+
+            <!-- SEÇÃO 8 -->
+            <section id="boas-praticas-js" class="content-section" hidden>
+                <h1>Boas Práticas de JavaScript</h1>
+                <p>Escreva código limpo, seguro e eficiente.</p>
+                <hr />
+                <ul>
+                    <li>Use <code>const</code> e <code>let</code> em vez de <code>var</code>.</li>
+                    <li>Prefira funções pequenas e reutilizáveis.</li>
+                    <li>Evite poluir o escopo global.</li>
+                    <li>Trate erros com <code>try/catch</code>.</li>
+                    <li>Use <code>===</code> em vez de <code>==</code>.</li>
+                    <li>Documente funções e mantenha estilo consistente.</li>
+                </ul>
+
+                <h2>Referências</h2>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">MDN JavaScript Docs</a></li>
+                    <li><a href="https://tc39.es/ecma262/" target="_blank">Especificação ECMAScript</a></li>
+                    <li>Guias e blogs modernos de desenvolvimento JS.</li>
+                </ul>
+            </section>
+
+            <!-- Voltar -->
+            <section id="voltar-index" class="content-section" hidden>
+                <h2>Voltar para a página inicial</h2>
+                <button onclick="window.location.href='index.html'">← Voltar para Index</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Barra inferior -->
+    <footer class="bottombar">
+        <span>Status: Pronto</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
