@@ -1,35 +1,27 @@
 // =========================================================
 // 1. VARIÁVEIS GLOBAIS
 // =========================================================
-const bottomBar = document.querySelector('.bottombar span'); // Barra de status inferior
-const fileLinks = document.querySelectorAll('.file-link, .folder-header'); // Todos os links de arquivo e pastas
-const page = document.documentElement.dataset.page; // Página atual
-const contentTitle = document.querySelector('#main-title'); // Título do conteúdo ativo
-let currentActiveLink = null; // Link ativo
-let currentContentSection = document.querySelector('.content-section.active'); // Seção ativa
-const toggle = document.getElementById('theme-toggle'); // Toggle de tema
-let editor = null; // Instância do CodeMirror
-let previewTimeout; // Timeout para atualização do preview
+const bottomBar = document.querySelector('.bottombar span');
+const fileLinks = document.querySelectorAll('.file-link, .folder-header');
+const page = document.documentElement.dataset.page;
+const contentTitle = document.querySelector('#main-title');
+let currentActiveLink = null;
+let currentContentSection = document.querySelector('.content-section.active');
+const toggle = document.getElementById('theme-toggle');
+let editor = null;
+let previewTimeout;
 
 // =========================================================
 // 2. OBJETO: Gerencia scroll por seção
 // =========================================================
 const scrollManager = {
     positions: {},
-    /**
-     * Salva a posição do scroll de uma seção
-     * @param {string} id - ID da seção
-     */
     save(id) { this.positions[id] = window.scrollY; },
-    /**
-     * Restaura a posição do scroll de uma seção
-     * @param {string} id - ID da seção
-     */
     restore(id) { window.scrollTo({ top: this.positions[id] || 0, behavior: 'smooth' }); }
 };
 
 // =========================================================
-// 3. FUNÇÃO: Atualiza a barra de status
+// 3. FUNÇÃO: Atualiza barra de status
 // =========================================================
 function updateStatus(message, type = 'info') {
     if (!bottomBar) return;
@@ -46,7 +38,7 @@ function debugLog(message, data = null) {
 }
 
 // =========================================================
-// 5. FUNÇÃO: Retorna o status de um link
+// 5. FUNÇÃO: Retorna status de link
 // =========================================================
 function getLinkStatus(link) {
     if (!link) return 'Pronto';
@@ -68,7 +60,7 @@ function updateCurrentStatus() {
 }
 
 // =========================================================
-// 7. FUNÇÃO: Alterna a visibilidade do conteúdo
+// 7. FUNÇÃO: Alterna conteúdo
 // =========================================================
 function switchContent(contentId, newLink) {
     if (currentContentSection) {
@@ -85,20 +77,18 @@ function switchContent(contentId, newLink) {
     currentContentSection = newSection;
 
     if (contentTitle) contentTitle.textContent = newSection.querySelector('h1')?.textContent || '';
+    setActiveLink(newLink, false);
 
-    setActiveLink(newLink, false); // Não atualiza status aqui, será feito no final
     scrollManager.restore(newSection.id);
-    updateCurrentStatus(); // Atualiza apenas uma vez
+    updateCurrentStatus();
+
+    // Inicializa editor se a seção for ativa e editor ainda não foi criado
+    if (contentId === "editor-html" && !editor) initEditor();
 }
 
 // =========================================================
 // 8. FUNÇÃO: Define link ativo
 // =========================================================
-/**
- * Define um link como ativo
- * @param {HTMLElement} newLink - Novo link ativo
- * @param {boolean} updateStatusFlag - Se true, atualiza status imediatamente
- */
 function setActiveLink(newLink, updateStatusFlag = true) {
     if (currentActiveLink) currentActiveLink.classList.remove('active');
     newLink?.classList.add('active');
@@ -126,17 +116,19 @@ function handleFolderClick(header) {
 }
 
 // =========================================================
-// 10. FUNÇÃO: Inicializa editor CodeMirror + preview
+// 10. FUNÇÃO: Inicializa CodeMirror + preview
 // =========================================================
 function initEditor() {
     const editorTextarea = document.getElementById("editor-code");
     const preview = document.getElementById("preview");
     if (!editorTextarea || !preview) return;
 
+    const isLight = document.body.classList.contains('light-theme');
+
     editor = CodeMirror.fromTextArea(editorTextarea, {
         mode: "htmlmixed",
         lineNumbers: true,
-        theme: "material-darker",
+        theme: isLight ? "default" : "material-darker",
         lineWrapping: true,
     });
 
@@ -145,7 +137,7 @@ function initEditor() {
             html, body { background-color:#fff;color:#000;font-family:Arial,sans-serif;margin:0;padding:10px; }
         </style>`;
         preview.srcdoc = base + editor.getValue();
-        saveEditorContent(false); // false para não duplicar status
+        saveEditorContent(false);
         debugLog('AutoSave executado');
         updateLineCount();
     };
@@ -171,7 +163,7 @@ function saveEditorContent(showStatus = true) {
 }
 
 // =========================================================
-// 12. FUNÇÃO: Atualiza contador de linhas do editor
+// 12. FUNÇÃO: Atualiza contador de linhas
 // =========================================================
 function updateLineCount() {
     if (!editor) return;
@@ -180,7 +172,7 @@ function updateLineCount() {
 }
 
 // =========================================================
-// 13. FUNÇÃO: Notificação rápida de AutoSave
+// 13. FUNÇÃO: Notificação de AutoSave
 // =========================================================
 function showAutoSaveNotice() {
     updateStatus('Alterações salvas automaticamente');
@@ -213,23 +205,21 @@ function initShortcuts() {
             updateStatus('Redo realizado');
         }
 
+        // Atalhos para trocar seções rapidamente
         if (e.ctrlKey) {
             switch (e.key) {
                 case '1':
-                    const link1 = document.querySelector('.file-link[data-content-id="html-section"]');
+                    const link1 = document.querySelector('.file-link[data-content-id="editor-html"]');
                     if (link1) switchContent(link1.dataset.contentId, link1);
                     break;
-                case '2':
-                    const link2 = document.querySelector('.file-link[data-content-id="css-section"]');
-                    if (link2) switchContent(link2.dataset.contentId, link2);
-                    break;
+                // Adicione mais seções se necessário
             }
         }
     });
 }
 
 // =========================================================
-// 15. FUNÇÃO: Sincroniza tema com o sistema
+// 15. FUNÇÃO: Sincroniza tema com o sistema + CodeMirror
 // =========================================================
 function syncSystemTheme() {
     if (!window.matchMedia) return;
@@ -238,7 +228,8 @@ function syncSystemTheme() {
         document.body.classList.toggle('light-theme', isLight);
         toggle.checked = isLight;
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        updateStatus(`Tema do sistema alterado para ${isLight ? 'light' : 'dark'}`);
+        if (editor) editor.setOption("theme", isLight ? "default" : "material-darker");
+        updateStatus(`Tema alterado para ${isLight ? 'claro' : 'escuro'}`);
     };
 
     const savedTheme = localStorage.getItem('theme');
@@ -269,7 +260,7 @@ function focusEditor() { if (editor) editor.focus(); }
 function initVSLearn() {
     syncSystemTheme();
 
-    if (page === 'html' || page === 'editor') {
+    if (page === 'editor') {
         const initialLink = document.querySelector('.file-link.active');
         if (initialLink) {
             currentActiveLink = initialLink;
@@ -277,6 +268,8 @@ function initVSLearn() {
             if (initialSection) currentContentSection = initialSection;
             if (contentTitle && currentContentSection) contentTitle.textContent = currentContentSection.querySelector('h1')?.textContent || '';
             updateCurrentStatus();
+
+            if (initialSection.id === "editor-html") initEditor();
         }
     }
 
@@ -299,7 +292,6 @@ function initVSLearn() {
 
     window.addEventListener("pageshow", (event) => { if (event.persisted) window.location.reload(); });
 
-    initEditor();
     initShortcuts();
 
     updateStatus('Bem-vindo ao VSLearn!');
