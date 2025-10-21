@@ -11,14 +11,15 @@
     <!-- === CodeMirror (Editor de Código) === -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/material-darker.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js" defer></script>
+
+    <!-- === Scripts do CodeMirror === -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
 
     <style>
-        /* === Propriedades Customizadas === */
         :root {
             --header-height: 40px;
             --footer-height: 40px;
@@ -28,7 +29,6 @@
             --bg-preview-dark: #fff;
         }
 
-        /* === Layout Principal (CSS Grid) === */
         body {
             display: grid;
             grid-template-areas:
@@ -60,7 +60,6 @@
             flex-direction: column;
         }
 
-        /* === Editor + Preview Container (Flex) === */
         .editor-container {
             display: flex;
             gap: var(--gap-size);
@@ -87,7 +86,6 @@
             min-width: 350px;
         }
 
-        /* === Tema Claro === */
         body.light-theme .CodeMirror {
             background-color: #fff;
             color: #333;
@@ -102,12 +100,10 @@
 </head>
 
 <body>
-    <!-- === Topbar === -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn (Editor + Preview)</span>
     </header>
 
-    <!-- === Sidebar === -->
     <aside class="sidebar">
         <div class="explorer-title">EXPLORADOR</div>
         <nav class="file-explorer"> 
@@ -120,7 +116,7 @@
                     </div>
                     <ul class="sub-items visible" data-module="html">
                         <li class="file">
-                             <div class="file-link active" data-content-id="o-que-e-css" data-status="Aprendendo o que é CSS">
+                             <div class="file-link active" data-content-id="editor-html" data-status="Aprendendo HTML + CSS">
                                 <span class="file-name">Área de testes</span>
                             </div>
                         </li>
@@ -138,7 +134,6 @@
         </div>
     </aside>
 
-    <!-- === Conteúdo Principal === -->
     <main class="content">
         <section id="editor-html" class="content-section active" aria-labelledby="editor-title"> 
             <h1 id="editor-title">Editor de Código HTML + CSS + JS</h1> 
@@ -157,7 +152,6 @@ h1 { color: #007acc; }
 <body>
 <h1>Olá Mundo!</h1>
 <p>Edite o HTML, CSS e JS e veja o preview ao lado.</p>
-
 <script>
 console.log('Bem-vindo ao editor!');
 </script>
@@ -169,12 +163,11 @@ console.log('Bem-vindo ao editor!');
         </section>
     </main>
 
-    <!-- === Rodapé === -->
     <footer class="bottombar">
         <span>Status: Editor em tempo real</span>
     </footer>
 
-    <!-- === Script Principal === -->
+    <!-- Script principal (defer garante que o DOM esteja carregado) -->
     <script src="script.js" defer></script>
 </body>
 </html>
