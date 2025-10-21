@@ -1,225 +1,312 @@
 // =========================================================
-// 1. VARIÁVEIS E FUNÇÕES GLOBAIS
+// 1. VARIÁVEIS GLOBAIS
 // =========================================================
-const bottomBar = document.querySelector('.bottombar span');
-const fileLinks = document.querySelectorAll('.file-link, .folder-header');
-const page = document.documentElement.dataset.page;
-const contentTitle = document.querySelector('#main-title');
-const contentSections = document.querySelectorAll('.content-section');
-let currentActiveLink = null;
-let currentContentSection = document.querySelector('.content-section.active'); // conteúdo inicial
-const toggle = document.getElementById('theme-toggle'); // slide switch
+const bottomBar = document.querySelector('.bottombar span'); // Barra de status inferior
+const fileLinks = document.querySelectorAll('.file-link, .folder-header'); // Todos os links de arquivo e pastas
+const page = document.documentElement.dataset.page; // Página atual
+const contentTitle = document.querySelector('#main-title'); // Título do conteúdo ativo
+let currentActiveLink = null; // Link ativo
+let currentContentSection = document.querySelector('.content-section.active'); // Seção ativa
+const toggle = document.getElementById('theme-toggle'); // Toggle de tema
+let editor = null; // Instância do CodeMirror
+let previewTimeout; // Timeout para atualização do preview
 
 // =========================================================
-// 2. FUNÇÃO: Atualiza a barra de status inferior
+// 2. OBJETO: Gerencia scroll por seção
 // =========================================================
-function updateStatus(message) {
-    if (bottomBar) {
-        bottomBar.textContent = `Status: ${message}`;
+const scrollManager = {
+    positions: {},
+    /**
+     * Salva a posição do scroll de uma seção
+     * @param {string} id - ID da seção
+     */
+    save(id) { this.positions[id] = window.scrollY; },
+    /**
+     * Restaura a posição do scroll de uma seção
+     * @param {string} id - ID da seção
+     */
+    restore(id) { window.scrollTo({ top: this.positions[id] || 0, behavior: 'smooth' }); }
+};
+
+// =========================================================
+// 3. FUNÇÃO: Atualiza a barra de status
+// =========================================================
+function updateStatus(message, type = 'info') {
+    if (!bottomBar) return;
+    bottomBar.textContent = `Status: ${message}`;
+    bottomBar.className = `status-${type}`;
+}
+
+// =========================================================
+// 4. FUNÇÃO: Logging para debug
+// =========================================================
+function debugLog(message, data = null) {
+    const timestamp = new Date().toLocaleTimeString();
+    console.log(`[VSLearn | ${timestamp}] ${message}`, data || '');
+}
+
+// =========================================================
+// 5. FUNÇÃO: Retorna o status de um link
+// =========================================================
+function getLinkStatus(link) {
+    if (!link) return 'Pronto';
+    return link.dataset.status || `Editando arquivo: ${link.querySelector('.file-name')?.textContent || ''}`;
+}
+
+// =========================================================
+// 6. FUNÇÃO: Atualiza status do link ou seção ativa
+// =========================================================
+function updateCurrentStatus() {
+    if (currentContentSection) {
+        const title = currentContentSection.querySelector('h1')?.textContent || currentContentSection.id;
+        updateStatus(`Seção ativa: ${title}`);
+    } else if (currentActiveLink) {
+        updateStatus(getLinkStatus(currentActiveLink));
+    } else {
+        updateStatus('Pronto');
     }
 }
 
 // =========================================================
-// 3. FUNÇÃO: Alterna a visibilidade do conteúdo no HTML
+// 7. FUNÇÃO: Alterna a visibilidade do conteúdo
 // =========================================================
 function switchContent(contentId, newLink) {
-    // Esconde a seção atual
     if (currentContentSection) {
+        scrollManager.save(currentContentSection.id);
         currentContentSection.classList.remove('active');
         currentContentSection.setAttribute('hidden', '');
     }
 
-    // Mostra a nova seção
     const newSection = document.querySelector(`#${contentId}`);
-    if (newSection) {
-        newSection.classList.add('active');
-        newSection.removeAttribute('hidden');
-        currentContentSection = newSection;
+    if (!newSection) return updateStatus(`Erro: Conteúdo '${contentId}' não encontrado.`, 'error');
 
-        // Atualiza título
-        const sectionTitle = newSection.querySelector('h1')?.textContent || '';
-        if (contentTitle) contentTitle.textContent = sectionTitle;
+    newSection.classList.add('active');
+    newSection.removeAttribute('hidden');
+    currentContentSection = newSection;
 
-        // Atualiza status
-        const statusMessage = newLink.dataset.status || `Editando arquivo: ${newLink.querySelector('.file-name')?.textContent || ''}`;
-        updateStatus(statusMessage);
+    if (contentTitle) contentTitle.textContent = newSection.querySelector('h1')?.textContent || '';
 
-        // Scroll suave para o topo
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-        updateStatus(`Erro: Conteúdo '${contentId}' não encontrado.`);
-    }
+    setActiveLink(newLink, false); // Não atualiza status aqui, será feito no final
+    scrollManager.restore(newSection.id);
+    updateCurrentStatus(); // Atualiza apenas uma vez
 }
 
 // =========================================================
-// 4. FUNÇÃO: Gerencia estado ativo do link na sidebar
+// 8. FUNÇÃO: Define link ativo
 // =========================================================
-function setActiveLink(newLink) {
+/**
+ * Define um link como ativo
+ * @param {HTMLElement} newLink - Novo link ativo
+ * @param {boolean} updateStatusFlag - Se true, atualiza status imediatamente
+ */
+function setActiveLink(newLink, updateStatusFlag = true) {
     if (currentActiveLink) currentActiveLink.classList.remove('active');
-    newLink.classList.add('active');
+    newLink?.classList.add('active');
     currentActiveLink = newLink;
+    if (updateStatusFlag) updateCurrentStatus();
 }
 
 // =========================================================
-// 5. FUNÇÃO: Gerencia clique em pastas/links com data-href
+// 9. FUNÇÃO: Gerencia clique em pastas
 // =========================================================
 function handleFolderClick(header) {
     const folder = header.closest(".folder");
     const href = header.dataset.href;
     if (!href) return;
 
-    // Efeito visual
     folder.classList.toggle("open");
     const arrow = folder.querySelector(".folder-arrow");
     if (arrow) arrow.classList.toggle("rotated");
 
-    // Fade-out em outros itens
     document.querySelectorAll(".folder, .file").forEach(item => {
         if (item !== folder) item.classList.toggle("fade-out");
     });
 
-    // Navegação com delay para efeito visual
-    setTimeout(() => {
-        window.location.href = href;
-    }, 300);
+    setTimeout(() => { window.location.href = href; }, 300);
 }
 
 // =========================================================
-// 6. FUNÇÃO: Inicializa o editor CodeMirror + preview HTML
+// 10. FUNÇÃO: Inicializa editor CodeMirror + preview
 // =========================================================
 function initEditor() {
     const editorTextarea = document.getElementById("editor-code");
     const preview = document.getElementById("preview");
-
-    // Só inicializa se o editor existir na página
     if (!editorTextarea || !preview) return;
 
-    // --- Inicializa CodeMirror ---
-    const editor = CodeMirror.fromTextArea(editorTextarea, {
+    editor = CodeMirror.fromTextArea(editorTextarea, {
         mode: "htmlmixed",
         lineNumbers: true,
         theme: "material-darker",
         lineWrapping: true,
     });
 
-    // --- Atualiza o preview ---
     const updatePreview = () => {
         const base = `<style>
-            html, body {
-                background-color: #fff;
-                color: #000;
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 10px;
-            }
+            html, body { background-color:#fff;color:#000;font-family:Arial,sans-serif;margin:0;padding:10px; }
         </style>`;
         preview.srcdoc = base + editor.getValue();
+        saveEditorContent(false); // false para não duplicar status
+        debugLog('AutoSave executado');
+        updateLineCount();
     };
 
-    editor.on("change", updatePreview);
-    updatePreview();
-
-    // --- Sincroniza com tema claro/escuro ---
-    toggle?.addEventListener("change", () => {
-        document.body.classList.toggle("light-theme", toggle.checked);
+    editor.on("change", () => {
+        clearTimeout(previewTimeout);
+        previewTimeout = setTimeout(updatePreview, 500);
     });
 
-    // Atualiza status inicial
+    updatePreview();
+    focusEditor();
     updateStatus("Editor em tempo real");
+    debugLog('Editor inicializado');
 }
 
 // =========================================================
-// 7. FUNÇÃO: Inicialização geral do site (VSLearn)
+// 11. FUNÇÃO: Salva conteúdo do editor
 // =========================================================
-function initVSLearn() {
-    // --- Tema claro/escuro persistente ---
-    if (toggle) {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-            toggle.checked = true;
+function saveEditorContent(showStatus = true) {
+    if (!editor) return;
+    localStorage.setItem('vslearn-editor-content', editor.getValue());
+    if (showStatus) showAutoSaveNotice();
+}
+
+// =========================================================
+// 12. FUNÇÃO: Atualiza contador de linhas do editor
+// =========================================================
+function updateLineCount() {
+    if (!editor) return;
+    const lineCount = editor.lineCount();
+    bottomBar.textContent = `Linhas: ${lineCount} | ${bottomBar.textContent}`;
+}
+
+// =========================================================
+// 13. FUNÇÃO: Notificação rápida de AutoSave
+// =========================================================
+function showAutoSaveNotice() {
+    updateStatus('Alterações salvas automaticamente');
+    setTimeout(updateCurrentStatus, 2000);
+}
+
+// =========================================================
+// 14. FUNÇÃO: Inicializa teclas de atalho
+// =========================================================
+function initShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        if (!editor) return;
+
+        if (e.ctrlKey && e.key.toLowerCase() === 's') {
+            e.preventDefault();
+            saveEditorContent();
+            updateStatus('Arquivo salvo via Ctrl+S');
+            debugLog('Arquivo salvo (Ctrl+S)');
         }
 
-        toggle.addEventListener('change', () => {
-            document.body.classList.toggle('light-theme', toggle.checked);
-            localStorage.setItem('theme', toggle.checked ? 'light' : 'dark');
-        });
-    }
+        if (e.ctrlKey && e.key.toLowerCase() === 'z') {
+            e.preventDefault();
+            editor.undo();
+            updateStatus('Undo realizado');
+        }
 
-    // --- Inicializa link ativo e título ---
+        if (e.ctrlKey && e.key.toLowerCase() === 'y') {
+            e.preventDefault();
+            editor.redo();
+            updateStatus('Redo realizado');
+        }
+
+        if (e.ctrlKey) {
+            switch (e.key) {
+                case '1':
+                    const link1 = document.querySelector('.file-link[data-content-id="html-section"]');
+                    if (link1) switchContent(link1.dataset.contentId, link1);
+                    break;
+                case '2':
+                    const link2 = document.querySelector('.file-link[data-content-id="css-section"]');
+                    if (link2) switchContent(link2.dataset.contentId, link2);
+                    break;
+            }
+        }
+    });
+}
+
+// =========================================================
+// 15. FUNÇÃO: Sincroniza tema com o sistema
+// =========================================================
+function syncSystemTheme() {
+    if (!window.matchMedia) return;
+
+    const applyTheme = (isLight) => {
+        document.body.classList.toggle('light-theme', isLight);
+        toggle.checked = isLight;
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        updateStatus(`Tema do sistema alterado para ${isLight ? 'light' : 'dark'}`);
+    };
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) applyTheme(savedTheme === 'light');
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme(true);
+
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => applyTheme(e.matches));
+
+    toggle?.addEventListener('change', () => applyTheme(toggle.checked));
+}
+
+// =========================================================
+// 16. FUNÇÃO: Tooltips rápidos
+// =========================================================
+document.querySelectorAll('[data-tooltip]').forEach(el => {
+    el.addEventListener('mouseover', () => updateStatus(el.dataset.tooltip));
+    el.addEventListener('mouseout', updateCurrentStatus);
+});
+
+// =========================================================
+// 17. FUNÇÃO: Foco no editor
+// =========================================================
+function focusEditor() { if (editor) editor.focus(); }
+
+// =========================================================
+// 18. FUNÇÃO: Inicialização geral do site
+// =========================================================
+function initVSLearn() {
+    syncSystemTheme();
+
     if (page === 'html' || page === 'editor') {
         const initialLink = document.querySelector('.file-link.active');
         if (initialLink) {
             currentActiveLink = initialLink;
             const initialSection = document.querySelector(`#${initialLink.dataset.contentId}`);
-            if (initialSection) {
-                const sectionTitle = initialSection.querySelector('h1')?.textContent || '';
-                if (contentTitle) contentTitle.textContent = sectionTitle;
-            }
-            const statusMessage = initialLink.dataset.status || `Editando arquivo: ${initialLink.querySelector('.file-name')?.textContent || ''}`;
-            updateStatus(statusMessage);
+            if (initialSection) currentContentSection = initialSection;
+            if (contentTitle && currentContentSection) contentTitle.textContent = currentContentSection.querySelector('h1')?.textContent || '';
+            updateCurrentStatus();
         }
     }
 
-    // --- Eventos para links e pastas ---
     fileLinks.forEach(link => {
-
-        // Clique
         link.addEventListener("click", (e) => {
-            if (link.tagName === 'A') return; // ignora links externos
-
-            // Se for pasta
-            if (link.classList.contains('folder-header')) {
-                e.preventDefault();
-                handleFolderClick(link);
-                return;
-            }
-
-            // Se for subitem de conteúdo
+            if (link.tagName === 'A') return;
+            if (link.classList.contains('folder-header')) { e.preventDefault(); handleFolderClick(link); return; }
             const contentId = link.dataset.contentId;
-            if (contentId) {
-                e.preventDefault();
-                setActiveLink(link);
-                switchContent(contentId, link);
-            }
+            if (contentId) { e.preventDefault(); switchContent(contentId, link); }
         });
 
-        // Hover: atualiza status bar
-        link.addEventListener('mouseover', () => {
-            const statusMessage = link.dataset.status || `Visualizando: ${link.querySelector('.file-name')?.textContent || ''}`;
-            updateStatus(statusMessage);
-        });
-
-        link.addEventListener('mouseout', () => {
-            if (currentActiveLink) {
-                const currentStatus = currentActiveLink.dataset.status || `Editando arquivo: ${currentActiveLink.querySelector('.file-name')?.textContent || ''}`;
-                updateStatus(currentStatus);
-            } else {
-                updateStatus('Pronto');
-            }
-        });
+        link.addEventListener('mouseover', () => updateStatus(getLinkStatus(link)));
+        link.addEventListener('mouseout', updateCurrentStatus);
     });
 
-    // --- Sombra na topbar ao scroll ---
     window.addEventListener('scroll', () => {
         const topbar = document.querySelector('.topbar');
-        if (window.scrollY > 5) {
-            topbar.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.4)';
-        } else {
-            topbar.style.boxShadow = 'none';
-        }
+        if (topbar) topbar.style.boxShadow = window.scrollY > 5 ? '0 2px 5px rgba(0,0,0,0.4)' : 'none';
     });
 
-    // --- Reload se usuário voltar pelo histórico ---
-    window.addEventListener("pageshow", (event) => {
-        if (event.persisted) window.location.reload();
-    });
+    window.addEventListener("pageshow", (event) => { if (event.persisted) window.location.reload(); });
 
-    // --- Inicializa o editor se estiver presente ---
     initEditor();
+    initShortcuts();
+
+    updateStatus('Bem-vindo ao VSLearn!');
+    setTimeout(updateCurrentStatus, 2000);
 }
 
 // =========================================================
-// 8. INICIALIZA A APLICAÇÃO AO CARREGAR A PÁGINA
+// 19. INICIALIZAÇÃO AO CARREGAR A PÁGINA
 // =========================================================
 document.addEventListener("DOMContentLoaded", initVSLearn);
