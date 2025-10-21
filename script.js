@@ -6,7 +6,7 @@ const fileLinks = document.querySelectorAll('.file-link, .folder-header');
 const page = document.documentElement.dataset.page;
 const contentTitle = document.querySelector('#main-title');
 const contentSections = document.querySelectorAll('.content-section');
-let currentActiveLink = null; 
+let currentActiveLink = null;
 let currentContentSection = document.querySelector('.content-section.active'); // conteúdo inicial
 const toggle = document.getElementById('theme-toggle'); // slide switch
 
@@ -85,10 +85,53 @@ function handleFolderClick(header) {
 }
 
 // =========================================================
-// 6. INICIALIZAÇÃO E EVENT LISTENERS
+// 6. FUNÇÃO: Inicializa o editor CodeMirror + preview HTML
+// =========================================================
+function initEditor() {
+    const editorTextarea = document.getElementById("editor-code");
+    const preview = document.getElementById("preview");
+
+    // Só inicializa se o editor existir na página
+    if (!editorTextarea || !preview) return;
+
+    // --- Inicializa CodeMirror ---
+    const editor = CodeMirror.fromTextArea(editorTextarea, {
+        mode: "htmlmixed",
+        lineNumbers: true,
+        theme: "material-darker",
+        lineWrapping: true,
+    });
+
+    // --- Atualiza o preview ---
+    const updatePreview = () => {
+        const base = `<style>
+            html, body {
+                background-color: #fff;
+                color: #000;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 10px;
+            }
+        </style>`;
+        preview.srcdoc = base + editor.getValue();
+    };
+
+    editor.on("change", updatePreview);
+    updatePreview();
+
+    // --- Sincroniza com tema claro/escuro ---
+    toggle?.addEventListener("change", () => {
+        document.body.classList.toggle("light-theme", toggle.checked);
+    });
+
+    // Atualiza status inicial
+    updateStatus("Editor em tempo real");
+}
+
+// =========================================================
+// 7. FUNÇÃO: Inicialização geral do site (VSLearn)
 // =========================================================
 function initVSLearn() {
-
     // --- Tema claro/escuro persistente ---
     if (toggle) {
         const savedTheme = localStorage.getItem('theme');
@@ -104,7 +147,7 @@ function initVSLearn() {
     }
 
     // --- Inicializa link ativo e título ---
-    if (page === 'html') {
+    if (page === 'html' || page === 'editor') {
         const initialLink = document.querySelector('.file-link.active');
         if (initialLink) {
             currentActiveLink = initialLink;
@@ -144,7 +187,7 @@ function initVSLearn() {
         // Hover: atualiza status bar
         link.addEventListener('mouseover', () => {
             const statusMessage = link.dataset.status || `Visualizando: ${link.querySelector('.file-name')?.textContent || ''}`;
-            updateStatus(statusMessage); 
+            updateStatus(statusMessage);
         });
 
         link.addEventListener('mouseout', () => {
@@ -171,9 +214,12 @@ function initVSLearn() {
     window.addEventListener("pageshow", (event) => {
         if (event.persisted) window.location.reload();
     });
+
+    // --- Inicializa o editor se estiver presente ---
+    initEditor();
 }
 
 // =========================================================
-// 7. INICIA APLICAÇÃO
+// 8. INICIALIZA A APLICAÇÃO AO CARREGAR A PÁGINA
 // =========================================================
 document.addEventListener("DOMContentLoaded", initVSLearn);
