@@ -1,147 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-page="editor">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VSCode Simulado - Editor de Código</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>VSCode Simulado - Editor de Código</title>
 
-    <!-- === Estilos principais === -->
-    <link rel="stylesheet" href="style.css" />
+        <!-- === Estilos principais === -->
+        <link rel="stylesheet" href="style.css" />
 
-    <!-- === CodeMirror (Editor de Código) === -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/material-darker.min.css" />
+        <!-- === CodeMirror (Editor de Código) === -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/material-darker.min.css" />
 
-    <!-- === Scripts do CodeMirror === -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
+        <!-- === Scripts do CodeMirror === -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/xml/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/css/css.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
+    </head>
 
-    <style>
-        :root {
-            --header-height: 40px;
-            --footer-height: 40px;
-            --gap-size: 10px;
-            --border-color-dark: #333;
-            --border-color-light: #ccc;
-            --bg-preview-dark: #fff;
-        }
+    <body>
+        <header class="topbar">
+            <span>Aprenda Web - VSLearn (Editor + Preview)</span>
+            <button id="menu-toggle">☰</button>
+        </header>
 
-        body {
-            display: grid;
-            grid-template-areas:
-                "header header"
-                "sidebar main"
-                "footer footer";
-            grid-template-rows: var(--header-height) 1fr var(--footer-height);
-            grid-template-columns: minmax(200px, 250px) 1fr;
-            height: 100vh;
-            margin: 0;
-        }
+        <aside class="sidebar">
+            <div class="explorer-title">EXPLORADOR</div>
+            <nav class="file-explorer">
+                <ul class="file-tree">
+                    <li class="folder open" aria-expanded="true">
+                        <div class="folder-header file-link" data-href="index.html">
+                            <span class="folder-arrow">▸</span>
+                            <img src="icons/editor.svg" alt="Ícone de pasta de módulo" class="icon-svg" />
+                            <span class="file-name">Editor de código</span>
+                        </div>
+                        <ul class="sub-items visible" data-module="html">
+                            <li class="file">
+                                <div class="file-link active" data-content-id="editor-html" data-status="Aprendendo HTML + CSS">
+                                    <span class="file-name">Área de testes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
 
-        .topbar { grid-area: header; }
-        .sidebar { grid-area: sidebar; overflow-y: auto; }
-        .bottombar { grid-area: footer; }
+            <div class="theme-switch">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle" role="switch" aria-checked="false" />
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-label">Tema Claro</span>
+            </div>
+        </aside>
 
-        .content {
-            grid-area: main;
-            padding: var(--gap-size);
-            overflow-y: auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content-section {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .editor-container {
-            display: flex;
-            gap: var(--gap-size);
-            flex-grow: 1;
-            min-height: 300px;
-        }
-
-        .CodeMirror {
-            flex: 1;
-            height: 100%;
-            border: 1px solid var(--border-color-dark);
-            border-radius: 4px;
-            font-family: "IBM Plex Mono", monospace;
-            font-size: 1rem;
-            min-width: 350px;
-        }
-
-        #preview {
-            flex: 1;
-            height: 100%;
-            border: 1px solid var(--border-color-dark);
-            border-radius: 4px;
-            background-color: var(--bg-preview-dark);
-            min-width: 350px;
-        }
-
-        body.light-theme .CodeMirror {
-            background-color: #fff;
-            color: #333;
-            border: 1px solid var(--border-color-light);
-        }
-
-        body.light-theme #preview {
-            background-color: #fff;
-            border: 1px solid var(--border-color-light);
-        }
-    </style>
-</head>
-
-<body>
-    <header class="topbar">
-        <span>Aprenda Web - VSLearn (Editor + Preview)</span>
-        <button id="menu-toggle">☰</button>
-    </header>
-
-    <aside class="sidebar">
-        <div class="explorer-title">EXPLORADOR</div>
-        <nav class="file-explorer"> 
-            <ul class="file-tree">
-                <li class="folder open" aria-expanded="true"> 
-                    <div class="folder-header file-link" data-href="index.html">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/editor.svg" alt="Ícone de pasta de módulo" class="icon-svg" />
-                        <span class="file-name">Editor de código</span>
-                    </div>
-                    <ul class="sub-items visible" data-module="html">
-                        <li class="file">
-                             <div class="file-link active" data-content-id="editor-html" data-status="Aprendendo HTML + CSS">
-                                <span class="file-name">Área de testes</span>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="theme-switch">
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle" role="switch" aria-checked="false" />
-                <span class="slider round"></span>
-            </label>
-            <span class="switch-label">Tema Claro</span>
-        </div>
-    </aside>
-
-    <main class="content">
-        <section id="editor-html" class="content-section active" aria-labelledby="editor-title"> 
-            <h1 id="editor-title">Editor de Código HTML + CSS + JS</h1> 
-            <p>Escreva seu código e veja o resultado imediatamente à direita.</p>
-            <hr />
-            <div class="editor-container">
-                <textarea id="editor-code" aria-label="Editor de código para HTML, CSS e JavaScript">
+        <main class="content">
+            <section id="editor-html" class="content-section active" aria-labelledby="editor-title">
+                <h1 id="editor-title">Editor de Código HTML + CSS + JS</h1>
+                <p>Escreva seu código e veja o resultado imediatamente à direita.</p>
+                <hr />
+                <div class="editor-container">
+                    <textarea id="editor-code" aria-label="Editor de código para HTML, CSS e JavaScript">
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,17 +79,18 @@ console.log('Bem-vindo ao editor!');
 </script>
 </body>
 </html>
-                </textarea>
-                <iframe id="preview" title="Visualização em tempo real do código"></iframe>
-            </div>
-        </section>
-    </main>
 
-    <footer class="bottombar">
-        <span>Status: Editor em tempo real</span>
-    </footer>
+                    </textarea>
+                    <iframe id="preview" title="Visualização em tempo real do código"></iframe>
+                </div>
+            </section>
+        </main>
 
-    <!-- Script principal (defer garante que o DOM esteja carregado) -->
-    <script src="script.js" defer></script>
-</body>
+        <footer class="bottombar">
+            <span>Status: Editor em tempo real</span>
+        </footer>
+
+        <!-- Script principal (defer garante que o DOM esteja carregado) -->
+        <script src="script.js" defer></script>
+    </body>
 </html>
