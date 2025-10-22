@@ -69,7 +69,6 @@ body {
 }
 
 .file-link {
-    /* É crucial que este seja um bloco de flex ou block para preencher a largura */
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -77,21 +76,16 @@ body {
     width: 100%;
     padding: 5px 10px;
     transition: background-color 0.15s ease;
-    /* Ajuste para acomodar a linha ativa (pseudo-elemento) */
     position: relative; 
 }
 
-/* Hover em arquivos e pastas */
 .file-link:hover {
     background-color: #094771;
     cursor: pointer;
 }
 
-/* Estilo para o arquivo/pasta atualmente ativa */
 .file-link.active {
     background-color: #0060ad;
-    /* Remove a borda e padding-left de compensação antigos */
-    /* padding-left: 10px; */ 
 }
 
 .file-link.active::before {
@@ -100,7 +94,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 2px; /* Largura da linha de destaque */
+    width: 2px;
     background-color: #fff;
 }
 
@@ -118,14 +112,12 @@ body {
     vertical-align: middle;
 }
 
-/* Ícones que aparecem inline no conteúdo principal (reintroduzido) */
 .icon-svg-inline {
     height: 1.2em;
     width: 1.2em;
     vertical-align: middle;
     margin: 0 5px;
 }
-
 
 /* =========================================================
    Pastas e Setas
@@ -138,13 +130,12 @@ body {
     transform: rotate(0deg); 
 }
 
-/* Quando a pasta está ABERTA ('▸' transforma em seta para baixo) */
 .folder.open .folder-arrow {
     transform: rotate(90deg); 
 }
 
 /* =========================================================
-   Subpastas (Itens da árvore de arquivos)
+   Subpastas (Itens da árvore)
    ========================================================= */
 .sub-items {
     list-style: none;
@@ -161,7 +152,7 @@ body {
 }
 
 /* =========================================================
-   Conteúdo principal (Legibilidade)
+   Conteúdo principal
    ========================================================= */
 .content {
     flex: 1;
@@ -204,7 +195,7 @@ body {
     margin: 35px 0; 
 }
 
-.placeholder { /* Mantido para a caixa de destaque na index.html */
+.placeholder {
     opacity: 0.85;
     border: 1px dashed #555;
     padding: 15px;
@@ -213,7 +204,6 @@ body {
     margin-bottom: 25px;
     font-style: italic;
 }
-
 
 .content pre {
     background-color: #1a1a1a;
@@ -246,7 +236,7 @@ body {
 }
 
 /* =========================================================
-   TEMA CLARO (CORES REFINADAS)
+   Tema Claro
    ========================================================= */
 body.light-theme {
     background-color: #FFFFFF; 
@@ -270,16 +260,15 @@ body.light-theme .explorer-title {
     color: #999;
 }
 
-/* Ajuste do Link Ativo no Modo Claro */
 body.light-theme .file-link.active {
-    background-color: #eeeeee; /* Fundo mais sutil, menos invasivo que o azul */
+    background-color: #eeeeee;
 }
 body.light-theme .file-link.active::before {
-    background-color: #228be6; /* Linha de destaque azul */
+    background-color: #228be6;
 }
 
 body.light-theme .file-link:hover {
-    background-color: #e0e0e0; /* Hover mais suave */
+    background-color: #e0e0e0;
 }
 
 body.light-theme .content h1 {
@@ -297,13 +286,13 @@ body.light-theme .content pre {
 body.light-theme .content code {
     color: #333333;
 }
-body.light-theme .placeholder { /* Ajuste do Placeholder no modo claro */
+body.light-theme .placeholder {
     border: 1px dashed #999;
     background-color: #f7f7f7;
 }
 
 /* =========================================================
-   Slide Switch para alternar tema
+   Switch de Tema
    ========================================================= */
 .theme-switch {
     display: flex;
@@ -363,4 +352,137 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(20px);
+}
+
+#menu-toggle {
+    display: none;
+}
+
+/* =========================================================
+   Correções Editor + Preview
+   ========================================================= */
+.content {
+    max-width: 100%;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.editor-container {
+    display: flex;
+    gap: 15px;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: visible;
+    align-items: stretch;
+}
+
+.CodeMirror,
+#preview,
+.editor-area,
+.preview-area {
+    min-width: 0;
+    flex: 1 1 0%;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.CodeMirror, .CodeMirror .CodeMirror-scroll {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+    .editor-container {
+        flex-direction: column;
+    }
+
+    .CodeMirror,
+    #preview {
+        height: 50vh;
+        min-width: 100%;
+    }
+}
+
+/* =========================================================
+   OVERRIDE FORTE - Mobile Final
+   ========================================================= */
+@media (max-width: 768px) {
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    top: 40px !important;
+    left: 0 !important;
+    transform: translateX(-100%) !important;
+    width: 240px !important;
+    height: calc(100% - 40px) !important;
+    z-index: 1200 !important;
+  }
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  #menu-toggle {
+    display: inline-block !important;
+    position: absolute !important;
+    right: 10px !important;
+    top: 6px !important;
+    z-index: 1300 !important;
+  }
+
+  .content {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .editor-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .CodeMirror, #preview, .editor-area, .preview-area {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    height: 45vh !important;
+  }
+
+  .CodeMirror-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  .bottombar { text-align: center !important; padding: 6px 8px !important; }
+  .topbar { position: relative !important; z-index: 1400 !important; }
 }

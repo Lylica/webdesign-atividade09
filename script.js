@@ -302,3 +302,13 @@ function initVSLearn() {
 // 19. INICIALIZAÇÃO AO CARREGAR A PÁGINA
 // =========================================================
 document.addEventListener("DOMContentLoaded", initVSLearn);
+
+// =========================================================
+// 20. BOTÃO MENU MOBILE
+// =========================================================
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+
+menuToggle?.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+});
