@@ -4,146 +4,127 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VSCode Simulado - Backend</title>
+    <!-- Link para o CSS principal do projeto -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <!-- =========================================================
-         TOPO (Top Bar)
-         ========================================================= -->
+    <!-- Barra superior fixa com título e botão de menu para mobile -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn (Backend)</span>
-        <!-- Botão para abrir/fechar sidebar no modo mobile -->
         <button id="menu-toggle">☰</button>
     </header>
 
-    <!-- =========================================================
-         CONTAINER PRINCIPAL (Sidebar + Conteúdo)
-         ========================================================= -->
-    <div class="container">
+    <!-- Sidebar lateral com explorador de módulos e switch de tema -->
+    <aside class="sidebar">
+        <div class="explorer-title">EXPLORADOR</div>
 
-        <!-- =========================================================
-             SIDEBAR (Explorador de módulos e temas)
-             ========================================================= -->
-        <aside class="sidebar">
-            <div class="explorer-title">EXPLORADOR</div>
+        <!-- Lista de pastas e subitens -->
+        <ul class="file-tree">
+            <li class="folder open">
+                <!-- Cabeçalho da pasta Backend -->
+                <div class="folder-header file-link" data-href="index.html">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg" />
+                    <span class="file-name">Backend</span>
+                </div>
 
-            <!-- Árvore de arquivos / módulos -->
-            <ul class="file-tree">
-                <li class="folder open">
-                    <!-- Cabeçalho da pasta principal (Backend) -->
-                    <div class="folder-header file-link" data-href="index.html">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg" />
-                        <span class="file-name">Backend</span>
-                    </div>
+                <!-- Subitens da pasta Backend -->
+                <ul class="sub-items visible" data-module="backend">
+                    <li class="file">
+                        <div class="file-link active" data-content-id="introducao-backend" data-status="Introdução ao Backend">
+                            <span class="file-name">Introdução</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="nodejs-backend" data-status="Node.js">
+                            <span class="file-name">Node.js</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="express-backend" data-status="Express.js">
+                            <span class="file-name">Express.js</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="banco-dados-backend" data-status="Banco de Dados">
+                            <span class="file-name">Banco de Dados</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="apis-rest-backend" data-status="APIs REST">
+                            <span class="file-name">APIs REST</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="autenticacao-backend" data-status="Autenticação e Segurança">
+                            <span class="file-name">Autenticação</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="middleware-backend" data-status="Middlewares">
+                            <span class="file-name">Middlewares</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="boas-praticas-backend" data-status="Boas Práticas">
+                            <span class="file-name">Boas Práticas</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
-                    <!-- Subitens (lições e seções do módulo Backend) -->
-                    <ul class="sub-items visible" data-module="backend">
+        <!-- Switch de tema claro/escuro -->
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Tema Claro</span>
+        </div>
+    </aside>
 
-                        <!-- Cada item representa uma seção do conteúdo -->
-                        <li class="file">
-                            <div class="file-link active" data-content-id="introducao-backend" data-status="Introdução ao Backend">
-                                <span class="file-name">Introdução</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="nodejs-backend" data-status="Node.js">
-                                <span class="file-name">Node.js</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="express-backend" data-status="Express.js">
-                                <span class="file-name">Express.js</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="banco-dados-backend" data-status="Banco de Dados">
-                                <span class="file-name">Banco de Dados</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="apis-rest-backend" data-status="APIs REST">
-                                <span class="file-name">APIs REST</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="autenticacao-backend" data-status="Autenticação e Segurança">
-                                <span class="file-name">Autenticação</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="middleware-backend" data-status="Middlewares">
-                                <span class="file-name">Middlewares</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="boas-praticas-backend" data-status="Boas Práticas">
-                                <span class="file-name">Boas Práticas</span>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+    <!-- Conteúdo principal central -->
+    <main class="content">
+
+        <!-- Seção 1: Introdução ao Backend -->
+        <section id="introducao-backend" class="content-section active">
+            <h1>Introdução ao Backend</h1>
+            <p>
+                Backend refere-se à parte do sistema que roda no servidor, responsável por processar dados, controlar lógica de negócio e gerenciar banco de dados.
+            </p>
+            <hr />
+            <h2>Principais Responsabilidades</h2>
+            <ul>
+                <li>Processamento de dados e lógica do sistema.</li>
+                <li>Gerenciamento de bancos de dados e armazenamento.</li>
+                <li>Autenticação e segurança de usuários.</li>
+                <li>Comunicação via APIs com frontend.</li>
+                <li>Monitoramento e logging de aplicações.</li>
             </ul>
+            <h2>Tipos de Backend</h2>
+            <ul>
+                <li>Monolítico: aplicação única que controla tudo.</li>
+                <li>Microserviços: cada serviço é independente e comunica via APIs.</li>
+                <li>Serverless: funções acionadas sob demanda, sem servidor persistente.</li>
+            </ul>
+        </section>
 
-            <!-- =========================================================
-                 Switch de Tema (Claro/Escuro)
-                 ========================================================= -->
-            <div class="theme-switch">
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle" />
-                    <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Tema Claro</span>
-            </div>
-        </aside>
-
-        <!-- =========================================================
-             CONTEÚDO PRINCIPAL
-             ========================================================= -->
-        <main class="content">
-
-            <!-- =====================================================
-                 SEÇÃO 1 - Introdução ao Backend
-                 ===================================================== -->
-            <section id="introducao-backend" class="content-section active">
-                <h1>Introdução ao Backend</h1>
-                <p>
-                    Backend refere-se à parte do sistema que roda no servidor, responsável por processar dados, controlar lógica de negócio e gerenciar banco de dados.
-                </p>
-                <hr />
-                <h2>Principais Responsabilidades</h2>
-                <ul>
-                    <li>Processamento de dados e lógica do sistema.</li>
-                    <li>Gerenciamento de bancos de dados e armazenamento.</li>
-                    <li>Autenticação e segurança de usuários.</li>
-                    <li>Comunicação via APIs com frontend.</li>
-                    <li>Monitoramento e logging de aplicações.</li>
-                </ul>
-                <h2>Tipos de Backend</h2>
-                <ul>
-                    <li>Monolítico: aplicação única que controla tudo.</li>
-                    <li>Microserviços: cada serviço é independente e comunica via APIs.</li>
-                    <li>Serverless: funções acionadas sob demanda, sem servidor persistente.</li>
-                </ul>
-            </section>
-
-            <!-- =====================================================
-                 SEÇÃO 2 - Node.js
-                 ===================================================== -->
-            <section id="nodejs-backend" class="content-section" hidden>
-                <h1>Node.js</h1>
-                <p>Node.js é um runtime JavaScript para servidor, baseado em V8, permitindo criar aplicações rápidas e escaláveis.</p>
-                <hr />
-                <h2>Vantagens do Node.js</h2>
-                <ul>
-                    <li>Single-threaded com event loop eficiente.</li>
-                    <li>Grande ecossistema de pacotes (npm).</li>
-                    <li>Mesma linguagem no front e back (JS).</li>
-                    <li>Alta performance para aplicações I/O intensivas.</li>
-                </ul>
-                <h2>Exemplo de Servidor</h2>
-                <pre><code class="language-js">
+        <!-- Seção 2: Node.js -->
+        <section id="nodejs-backend" class="content-section" hidden>
+            <h1>Node.js</h1>
+            <p>Node.js é um runtime JavaScript para servidor, baseado em V8, permitindo criar aplicações rápidas e escaláveis.</p>
+            <hr />
+            <h2>Vantagens do Node.js</h2>
+            <ul>
+                <li>Single-threaded com event loop eficiente.</li>
+                <li>Grande ecossistema de pacotes (npm).</li>
+                <li>Mesma linguagem no front e back (JS).</li>
+                <li>Alta performance para aplicações I/O intensivas.</li>
+            </ul>
+            <h2>Exemplo de Servidor</h2>
+            <pre><code class="language-js">
 // Servidor básico Node.js
 const http = require('http');
 const port = 3000;
@@ -154,18 +135,16 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => console.log(`Servidor rodando em http://localhost:${port}`));
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 3 - Express.js
-                 ===================================================== -->
-            <section id="express-backend" class="content-section" hidden>
-                <h1>Express.js</h1>
-                <p>Framework minimalista para Node.js que facilita rotas, middlewares e APIs.</p>
-                <hr />
-                <h2>Roteamento</h2>
-                <pre><code class="language-js">
+        <!-- Seção 3: Express.js -->
+        <section id="express-backend" class="content-section" hidden>
+            <h1>Express.js</h1>
+            <p>Framework minimalista para Node.js que facilita rotas, middlewares e APIs.</p>
+            <hr />
+            <h2>Roteamento</h2>
+            <pre><code class="language-js">
 // Exemplo de rota
 const express = require('express');
 const app = express();
@@ -173,9 +152,9 @@ const port = 3000;
 
 app.get('/', (req, res) => res.send('Olá, Express!'));
 app.listen(port, () => console.log(`Servidor rodando em http://localhost:${port}`));
-                </code></pre>
-                <h2>Parâmetros e Query</h2>
-                <pre><code class="language-js">
+            </code></pre>
+            <h2>Parâmetros e Query</h2>
+            <pre><code class="language-js">
 app.get('/usuario/:id', (req, res) => {
     res.send(`Usuário: ${req.params.id}`);
 });
@@ -183,23 +162,21 @@ app.get('/usuario/:id', (req, res) => {
 app.get('/busca', (req, res) => {
     res.send(`Query: ${req.query.q}`);
 });
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 4 - Banco de Dados
-                 ===================================================== -->
-            <section id="banco-dados-backend" class="content-section" hidden>
-                <h1>Bancos de Dados</h1>
-                <p>O backend utiliza bancos de dados para armazenar e consultar informações de forma organizada.</p>
-                <hr />
-                <h2>Tipos de Banco</h2>
-                <ul>
-                    <li>Relacional (SQL): MySQL, PostgreSQL – tabelas, joins, ACID.</li>
-                    <li>NoSQL: MongoDB, Firebase – documentos, chave-valor, flexibilidade.</li>
-                </ul>
-                <h2>Exemplo com MongoDB (Mongoose)</h2>
-                <pre><code class="language-js">
+        <!-- Seção 4: Banco de Dados -->
+        <section id="banco-dados-backend" class="content-section" hidden>
+            <h1>Bancos de Dados</h1>
+            <p>O backend utiliza bancos de dados para armazenar e consultar informações de forma organizada.</p>
+            <hr />
+            <h2>Tipos de Banco</h2>
+            <ul>
+                <li>Relacional (SQL): MySQL, PostgreSQL – tabelas, joins, ACID.</li>
+                <li>NoSQL: MongoDB, Firebase – documentos, chave-valor, flexibilidade.</li>
+            </ul>
+            <h2>Exemplo com MongoDB (Mongoose)</h2>
+            <pre><code class="language-js">
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/teste');
 
@@ -210,63 +187,57 @@ const usuarioSchema = new mongoose.Schema({
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
 Usuario.create({nome: 'Ana', idade: 25});
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 5 - APIs REST
-                 ===================================================== -->
-            <section id="apis-rest-backend" class="content-section" hidden>
-                <h1>APIs REST</h1>
-                <p>APIs permitem que sistemas distintos se comuniquem de forma padronizada.</p>
-                <hr />
-                <h2>Princípios REST</h2>
-                <ul>
-                    <li>HTTP Methods: GET, POST, PUT, DELETE</li>
-                    <li>URLs claras e recursos bem definidos</li>
-                    <li>Stateless: cada requisição independente</li>
-                    <li>Uso de JSON para dados</li>
-                </ul>
-                <h2>Exemplo de API</h2>
-                <pre><code class="language-js">
+        <!-- Seção 5: APIs REST -->
+        <section id="apis-rest-backend" class="content-section" hidden>
+            <h1>APIs REST</h1>
+            <p>APIs permitem que sistemas distintos se comuniquem de forma padronizada.</p>
+            <hr />
+            <h2>Princípios REST</h2>
+            <ul>
+                <li>HTTP Methods: GET, POST, PUT, DELETE</li>
+                <li>URLs claras e recursos bem definidos</li>
+                <li>Stateless: cada requisição independente</li>
+                <li>Uso de JSON para dados</li>
+            </ul>
+            <h2>Exemplo de API</h2>
+            <pre><code class="language-js">
 app.get('/usuarios', (req, res) => {
     res.json([{id: 1, nome: 'Ana'}, {id: 2, nome: 'Pedro'}]);
 });
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 6 - Autenticação
-                 ===================================================== -->
-            <section id="autenticacao-backend" class="content-section" hidden>
-                <h1>Autenticação e Segurança</h1>
-                <p>Garantir acesso seguro e proteger dados do usuário é fundamental.</p>
-                <hr />
-                <h2>JWT (JSON Web Token)</h2>
-                <pre><code class="language-js">
+        <!-- Seção 6: Autenticação -->
+        <section id="autenticacao-backend" class="content-section" hidden>
+            <h1>Autenticação e Segurança</h1>
+            <p>Garantir acesso seguro e proteger dados do usuário é fundamental.</p>
+            <hr />
+            <h2>JWT (JSON Web Token)</h2>
+            <pre><code class="language-js">
 const jwt = require('jsonwebtoken');
 const token = jwt.sign({id: 1}, 'segredo', {expiresIn: '1h'});
 jwt.verify(token, 'segredo', (err, decoded) => console.log(decoded));
-                </code></pre>
-                <h2>Proteção de Rotas</h2>
-                <pre><code class="language-js">
+            </code></pre>
+            <h2>Proteção de Rotas</h2>
+            <pre><code class="language-js">
 function auth(req, res, next) {
     const token = req.headers.token;
     if(token === '12345') next();
     else res.status(401).send('Não autorizado');
 }
 app.get('/dashboard', auth, (req, res) => res.send('Bem-vindo!'));
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 7 - Middlewares
-                 ===================================================== -->
-            <section id="middleware-backend" class="content-section" hidden>
-                <h1>Middlewares</h1>
-                <p>Middlewares são funções que interceptam requisições antes de chegarem às rotas.</p>
-                <hr />
-                <pre><code class="language-js">
+        <!-- Seção 7: Middlewares -->
+        <section id="middleware-backend" class="content-section" hidden>
+            <h1>Middlewares</h1>
+            <p>Middlewares são funções que interceptam requisições antes de chegarem às rotas.</p>
+            <hr />
+            <pre><code class="language-js">
 // Middleware de logging
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -278,52 +249,43 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Erro interno');
 });
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO 8 - Boas Práticas
-                 ===================================================== -->
-            <section id="boas-praticas-backend" class="content-section" hidden>
-                <h1>Boas Práticas de Backend</h1>
-                <ul>
-                    <li>Modularize código (rotas, controllers, services).</li>
-                    <li>Use variáveis de ambiente para dados sensíveis.</li>
-                    <li>Valide e sanitize entradas do usuário.</li>
-                    <li>Trate erros e registre logs.</li>
-                    <li>Implemente autenticação e HTTPS.</li>
-                    <li>Documente APIs com Swagger ou similar.</li>
-                    <li>Testes automatizados: unitários e integração.</li>
-                </ul>
-                <h2>Referências</h2>
-                <ul>
-                    <li><a href="https://nodejs.org/pt-br/" target="_blank">Node.js</a></li>
-                    <li><a href="https://expressjs.com/pt-br/" target="_blank">Express.js</a></li>
-                    <li><a href="https://www.mongodb.com/" target="_blank">MongoDB</a></li>
-                    <li><a href="https://swagger.io/" target="_blank">Swagger</a></li>
-                </ul>
-            </section>
+        <!-- Seção 8: Boas Práticas -->
+        <section id="boas-praticas-backend" class="content-section" hidden>
+            <h1>Boas Práticas de Backend</h1>
+            <ul>
+                <li>Modularize código (rotas, controllers, services).</li>
+                <li>Use variáveis de ambiente para dados sensíveis.</li>
+                <li>Valide e sanitize entradas do usuário.</li>
+                <li>Trate erros e registre logs.</li>
+                <li>Implemente autenticação e HTTPS.</li>
+                <li>Documente APIs com Swagger ou similar.</li>
+                <li>Testes automatizados: unitários e integração.</li>
+            </ul>
+            <h2>Referências</h2>
+            <ul>
+                <li><a href="https://nodejs.org/pt-br/" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com/pt-br/" target="_blank">Express.js</a></li>
+                <li><a href="https://www.mongodb.com/" target="_blank">MongoDB</a></li>
+                <li><a href="https://swagger.io/" target="_blank">Swagger</a></li>
+            </ul>
+        </section>
 
-            <!-- =====================================================
-                 SEÇÃO FINAL - Voltar à página inicial
-                 ===================================================== -->
-            <section id="voltar-index" class="content-section" hidden>
-                <h2>Voltar para a página inicial</h2>
-                <button onclick="window.location.href='index.html'">← Voltar para Index</button>
-            </section>
-        </main>
-    </div>
+        <!-- Seção final para voltar à página inicial -->
+        <section id="voltar-index" class="content-section" hidden>
+            <h2>Voltar para a página inicial</h2>
+            <button onclick="window.location.href='index.html'">← Voltar para Index</button>
+        </section>
+    </main>
 
-    <!-- =========================================================
-         RODAPÉ (Status inferior)
-         ========================================================= -->
+    <!-- Rodapé com status -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
-    <!-- =========================================================
-         SCRIPT PRINCIPAL
-         ========================================================= -->
+    <!-- Script principal do projeto -->
     <script src="script.js"></script>
 </body>
 </html>

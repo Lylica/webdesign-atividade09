@@ -4,115 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VSCode Simulado - Index</title>
+    <!-- Link para o CSS principal do projeto -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Bar -->
+    <!-- Barra superior fixa com título e botão de menu para mobile -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn</span>
         <button id="menu-toggle">☰</button>
     </header>
 
-    <div class="container">
-        <!-- Sidebar / Explorador -->
-        <aside class="sidebar">
-            <div class="explorer-title">EXPLORADOR</div>
+    <!-- Sidebar lateral com explorador de arquivos e tema -->
+    <aside class="sidebar">
+        <!-- Título do explorador -->
+        <div class="explorer-title">EXPLORADOR</div>
 
-            <ul class="file-tree">
-                <!-- Arquivo ativo -->
-                <li class="file">
-                    <a href="index.html" class="file-link active" data-status="Pronto para começar a jornada">
-                        <img src="icons/vscode.svg" alt="Ícone do Index" class="icon-svg">
-                        <span class="file-name">index</span>
-                    </a>
-                </li>
+        <!-- Lista de arquivos e pastas -->
+        <ul class="file-tree">
+            <!-- Arquivo inicial (index) ativo -->
+            <li class="file">
+                <a href="index.html" class="file-link active" data-status="Pronto para começar a jornada">
+                    <img src="icons/vscode.svg" alt="Ícone do Index" class="icon-svg">
+                    <span class="file-name">index</span>
+                </a>
+            </li>
 
-                <!-- Módulos -->
-                <li class="folder closed">
-                    <div class="folder-header file-link" data-href="html.html" data-status="Abrir módulo HTML">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg">
-                        <span class="file-name">HTML</span>
-                    </div>
-                </li>
-
-                <li class="folder closed">
-                    <div class="folder-header file-link" data-href="css.html" data-status="Abrir módulo CSS">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg">
-                        <span class="file-name">CSS</span>
-                    </div>
-                </li>
-
-                <li class="folder closed">
-                    <div class="folder-header file-link" data-href="js.html" data-status="Abrir módulo JavaScript">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/javascript.svg" alt="Ícone JS" class="icon-svg">
-                        <span class="file-name">JavaScript</span>
-                    </div>
-                </li>
-
-                <li class="folder closed">
-                    <div class="folder-header file-link" data-href="backend.html" data-status="Abrir módulo Backend">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg">
-                        <span class="file-name">Backend</span>
-                    </div>
-                </li>
-
-                <li class="folder closed">
-                    <div class="folder-header file-link" data-href="editor.html" data-status="Abrir Editor de Código">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/editor.svg" alt="Ícone Editor" class="icon-svg">
-                        <span class="file-name">Editor de Código</span>
-                    </div>
-                </li>
-            </ul>
-
-            <!-- Slide switch para alternar tema -->
-            <div class="theme-switch">
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Tema Claro</span>
-            </div>
-        </aside>
-
-        <!-- Área principal -->
-        <main class="content">
-            <h1>A Base Completa: Sua Jornada Full-Stack VSLearn</h1>
-            <p class="intro">O VSLearn simula o ambiente do Visual Studio Code para lhe dar uma imersão prática e focada.</p>
-
-            <section class="proposta">
-                <h2>O Método VSLearn: Foco no Essencial</h2>
-                <p>Nossa metodologia se concentra em dominar os pilares de cada tecnologia.</p>
-                <div class="placeholder">
-                    <p>Para começar, abra o painel EXPLORADOR e selecione a pasta HTML.</p>
+            <!-- Pasta HTML, inicialmente fechada -->
+            <li class="folder closed">
+                <div class="folder-header file-link" data-href="html.html" data-status="Abrir módulo HTML">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg">
+                    <span class="file-name">HTML</span>
                 </div>
-            </section>
+            </li>
 
-            <section class="modulos">
-                <h2>Módulos Essenciais (O que você irá dominar)</h2>
-                <ul>
-                    <li><strong>HTML</strong> <img src="icons/html.svg" class="icon-svg-inline">- Estrutura e Semântica.</li>
-                    <li><strong>CSS</strong> <img src="icons/css.svg" class="icon-svg-inline">- Estilização e Layouts Modernos.</li>
-                    <li><strong>JavaScript (JS)</strong> <img src="icons/javascript.svg" class="icon-svg-inline">- Lógica e Interatividade (DOM).</li>
-                    <li><strong>Backend</strong> <img src="icons/database.svg" class="icon-svg-inline">- Conceitos de Servidor e Dados.</li>
-                </ul>
-            </section>
+            <!-- Pasta CSS -->
+            <li class="folder closed">
+                <div class="folder-header file-link" data-href="css.html" data-status="Abrir módulo CSS">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg">
+                    <span class="file-name">CSS</span>
+                </div>
+            </li>
 
-            <section class="comece-agora">
-                <h2>Sua Primeira Lição Espera</h2>
-                <p>Clique no diretório HTML para abrir o módulo e iniciar sua jornada.</p>
-            </section>
-        </main>
-    </div>
+            <!-- Pasta JavaScript -->
+            <li class="folder closed">
+                <div class="folder-header file-link" data-href="js.html" data-status="Abrir módulo JavaScript">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/javascript.svg" alt="Ícone JS" class="icon-svg">
+                    <span class="file-name">JavaScript</span>
+                </div>
+            </li>
 
+            <!-- Pasta Backend -->
+            <li class="folder closed">
+                <div class="folder-header file-link" data-href="backend.html" data-status="Abrir módulo Backend">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg">
+                    <span class="file-name">Backend</span>
+                </div>
+            </li>
+
+            <!-- Pasta Editor de Código -->
+            <li class="folder closed">
+                <div class="folder-header file-link" data-href="editor.html" data-status="Abrir Editor de Código">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/editor.svg" alt="Ícone Editor" class="icon-svg">
+                    <span class="file-name">Editor de Código</span>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Switch de tema claro/escuro -->
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Tema Claro</span>
+        </div>
+    </aside>
+
+    <!-- Conteúdo principal central -->
+    <main class="content">
+        <!-- Título principal da página -->
+        <h1>A Base Completa: Sua Jornada Full-Stack VSLearn</h1>
+        <p class="intro">O VSLearn simula o ambiente do Visual Studio Code para lhe dar uma imersão prática e focada.</p>
+
+        <!-- Seção de proposta / método -->
+        <section class="proposta">
+            <h2>O Método VSLearn: Foco no Essencial</h2>
+            <p>Nossa metodologia se concentra em dominar os pilares de cada tecnologia.</p>
+            <!-- Placeholder informativo -->
+            <div class="placeholder">
+                <p>Para começar, abra o painel EXPLORADOR e selecione a pasta HTML.</p>
+            </div>
+        </section>
+
+        <!-- Seção de módulos -->
+        <section class="modulos">
+            <h2>Módulos Essenciais (O que você irá dominar)</h2>
+            <ul>
+                <li><strong>HTML</strong> <img src="icons/html.svg" class="icon-svg-inline">- Estrutura e Semântica.</li>
+                <li><strong>CSS</strong> <img src="icons/css.svg" class="icon-svg-inline">- Estilização e Layouts Modernos.</li>
+                <li><strong>JavaScript (JS)</strong> <img src="icons/javascript.svg" class="icon-svg-inline">- Lógica e Interatividade (DOM).</li>
+                <li><strong>Backend</strong> <img src="icons/database.svg" class="icon-svg-inline">- Conceitos de Servidor e Dados.</li>
+            </ul>
+        </section>
+
+        <!-- Seção de chamada para ação -->
+        <section class="comece-agora">
+            <h2>Sua Primeira Lição Espera</h2>
+            <p>Clique no diretório HTML para abrir o módulo e iniciar sua jornada.</p>
+        </section>
+    </main>
+
+    <!-- Barra inferior / status -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
+    <!-- Script principal do site -->
     <script src="script.js"></script>
 </body>
 </html>

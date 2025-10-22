@@ -4,245 +4,218 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VSCode Simulado - CSS</title>
+    <!-- Link para o CSS principal do projeto -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- =========================================================
-         BARRA SUPERIOR FIXA — exibe o título e o botão de menu
-    ========================================================= -->
+    <!-- Barra superior fixa com título e botão de menu para mobile -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn (CSS)</span>
         <button id="menu-toggle">☰</button>
     </header>
 
-    <div class="container">
-        <!-- =========================================================
-             SIDEBAR — explorador de arquivos lateral
-             Contém o módulo "CSS" com suas seções temáticas
-        ========================================================= -->
-        <aside class="sidebar">
-            <div class="explorer-title">EXPLORADOR</div>
+    <!-- Sidebar lateral com explorador de módulos e switch de tema -->
+    <aside class="sidebar">
+        <div class="explorer-title">EXPLORADOR</div>
 
-            <!-- Estrutura de pastas e arquivos -->
-            <ul class="file-tree">
-                <!-- Pasta principal: CSS -->
-                <li class="folder open">
-                    <!-- Cabeçalho da pasta -->
-                    <div class="folder-header file-link" data-href="index.html">
-                        <span class="folder-arrow">▸</span>
-                        <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg" />
-                        <span class="file-name">CSS</span>
-                    </div>
+        <!-- Lista de pastas e subitens -->
+        <ul class="file-tree">
+            <li class="folder open">
+                <!-- Cabeçalho da pasta CSS -->
+                <div class="folder-header file-link" data-href="index.html">
+                    <span class="folder-arrow">▸</span>
+                    <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg" />
+                    <span class="file-name">CSS</span>
+                </div>
 
-                    <!-- Lista de subitens (lições do módulo CSS) -->
-                    <ul class="sub-items visible" data-module="css">
-                        <li class="file">
-                            <div class="file-link active" data-content-id="o-que-e-css" data-status="Aprendendo o que é CSS">
-                                <span class="file-name">O que é</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="historia-evolucao-css" data-status="História e Evolução do CSS">
-                                <span class="file-name">História / Evolução</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="sintaxe-basica-css" data-status="Sintaxe básica do CSS">
-                                <span class="file-name">Sintaxe Básica</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="selectores-css" data-status="Selectors e hierarquia">
-                                <span class="file-name">Seletores</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="box-model-css" data-status="Box model e layout">
-                                <span class="file-name">Box Model / Layout</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="layout-avancado-css" data-status="Flexbox, Grid e responsividade">
-                                <span class="file-name">Layout Avançado</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="animacoes-transicoes-css" data-status="Animações e Transições">
-                                <span class="file-name">Animações / Transições</span>
-                            </div>
-                        </li>
-                        <li class="file">
-                            <div class="file-link" data-content-id="boas-praticas-css" data-status="Boas práticas de CSS">
-                                <span class="file-name">Boas Práticas / Dicas</span>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- =========================================================
-                 SWITCH DE TEMA — alterna entre modo escuro e claro
-            ========================================================= -->
-            <div class="theme-switch">
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle" />
-                    <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Tema Claro</span>
-            </div>
-        </aside>
-
-        <!-- =========================================================
-             ÁREA DE CONTEÚDO PRINCIPAL
-             Cada <section> representa uma lição de CSS
-        ========================================================= -->
-        <main class="content">
-            <!-- SEÇÃO 1: Introdução -->
-            <section id="o-que-e-css" class="content-section active">
-                <h1>CSS: Estilo e Apresentação de Páginas</h1>
-                <p>
-                    CSS (Cascading Style Sheets) é a linguagem usada para definir aparência visual, cores, fontes, espaçamentos e layout de elementos HTML.
-                </p>
-                <hr />
-                <h2>Função do CSS</h2>
-                <ul>
-                    <li>Separar conteúdo (HTML) de apresentação (CSS).</li>
-                    <li>Controlar layout, cores, tipografia e responsividade.</li>
-                    <li>Permitir consistência visual em múltiplas páginas.</li>
+                <!-- Subitens do módulo CSS -->
+                <ul class="sub-items visible" data-module="css">
+                    <li class="file">
+                        <div class="file-link active" data-content-id="o-que-e-css" data-status="Aprendendo o que é CSS">
+                            <span class="file-name">O que é</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="historia-evolucao-css" data-status="História e Evolução do CSS">
+                            <span class="file-name">História / Evolução</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="sintaxe-basica-css" data-status="Sintaxe básica do CSS">
+                            <span class="file-name">Sintaxe Básica</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="selectores-css" data-status="Selectors e hierarquia">
+                            <span class="file-name">Seletores</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="box-model-css" data-status="Box model e layout">
+                            <span class="file-name">Box Model / Layout</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="layout-avancado-css" data-status="Flexbox, Grid e responsividade">
+                            <span class="file-name">Layout Avançado</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="animacoes-transicoes-css" data-status="Animações e Transições">
+                            <span class="file-name">Animações / Transições</span>
+                        </div>
+                    </li>
+                    <li class="file">
+                        <div class="file-link" data-content-id="boas-praticas-css" data-status="Boas práticas de CSS">
+                            <span class="file-name">Boas Práticas / Dicas</span>
+                        </div>
+                    </li>
                 </ul>
+            </li>
+        </ul>
 
-                <h2>Exemplo Básico</h2>
-                <pre><code class="language-css">
+        <!-- Switch de tema claro/escuro -->
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Tema Claro</span>
+        </div>
+    </aside>
+
+    <!-- Conteúdo principal central -->
+    <main class="content">
+        <!-- Seção 1: Introdução ao CSS -->
+        <section id="o-que-e-css" class="content-section active">
+            <h1>CSS: Estilo e Apresentação de Páginas</h1>
+            <p>CSS (Cascading Style Sheets) é a linguagem usada para definir aparência visual, cores, fontes, espaçamentos e layout de elementos HTML.</p>
+            <hr />
+            <h2>Função do CSS</h2>
+            <ul>
+                <li>Separar conteúdo (HTML) de apresentação (CSS).</li>
+                <li>Controlar layout, cores, tipografia e responsividade.</li>
+                <li>Permitir consistência visual em múltiplas páginas.</li>
+            </ul>
+            <h2>Exemplo Básico</h2>
+            <pre><code class="language-css">
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     color: #333;
 }
+h1 { color: #007acc; }
+            </code></pre>
+            <h2>Vantagens do CSS</h2>
+            <ul>
+                <li>Manutenção simplificada: alterar um arquivo CSS altera todo o site.</li>
+                <li>Controle completo do layout e responsividade.</li>
+                <li>Melhor desempenho em comparação a estilos inline.</li>
+            </ul>
+        </section>
 
-h1 {
-    color: #007acc;
-}
-                </code></pre>
+        <!-- Seção 2: História e evolução do CSS -->
+        <section id="historia-evolucao-css" class="content-section" hidden>
+            <h1>História e Evolução do CSS</h1>
+            <p>CSS surgiu em 1996, criado por Håkon Wium Lie, para separar conteúdo de apresentação e facilitar manutenção de sites.</p>
+            <hr />
+            <h2>CSS1, CSS2 e CSS3</h2>
+            <p>Resumo da evolução das versões com novas funcionalidades e modularização.</p>
+            <ul>
+                <li><strong>CSS1:</strong> estilos básicos (cores, fontes, espaçamentos).</li>
+                <li><strong>CSS2:</strong> posicionamento, z-index e media types.</li>
+                <li><strong>CSS3:</strong> flexbox, grid, animações e variáveis.</li>
+            </ul>
+        </section>
 
-                <h2>Vantagens do CSS</h2>
-                <ul>
-                    <li>Manutenção simplificada: alterar um arquivo CSS altera todo o site.</li>
-                    <li>Controle completo do layout e responsividade.</li>
-                    <li>Melhor desempenho em comparação a estilos inline.</li>
-                </ul>
-            </section>
-
-            <!-- SEÇÃO 2: História e evolução -->
-            <section id="historia-evolucao-css" class="content-section" hidden>
-                <h1>História e Evolução do CSS</h1>
-                <p>CSS surgiu em 1996, criado por Håkon Wium Lie, para separar conteúdo de apresentação e facilitar manutenção de sites.</p>
-                <hr />
-                <h2>CSS1, CSS2 e CSS3</h2>
-                <p>Resumo da evolução das versões com novas funcionalidades e modularização.</p>
-                <ul>
-                    <li><strong>CSS1:</strong> estilos básicos (cores, fontes, espaçamentos).</li>
-                    <li><strong>CSS2:</strong> posicionamento, z-index e media types.</li>
-                    <li><strong>CSS3:</strong> flexbox, grid, animações e variáveis.</li>
-                </ul>
-            </section>
-
-            <!-- SEÇÃO 3: Sintaxe -->
-            <section id="sintaxe-basica-css" class="content-section" hidden>
-                <h1>Sintaxe Básica do CSS</h1>
-                <p>Composta por seletores e declarações com propriedades e valores.</p>
-                <hr />
-                <h2>Exemplo de regra CSS</h2>
-                <pre><code class="language-css">
+        <!-- Seção 3: Sintaxe básica -->
+        <section id="sintaxe-basica-css" class="content-section" hidden>
+            <h1>Sintaxe Básica do CSS</h1>
+            <p>Composta por seletores e declarações com propriedades e valores.</p>
+            <hr />
+            <pre><code class="language-css">
 p {
     color: #333;
     font-size: 16px;
     line-height: 1.5;
 }
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- SEÇÃO 4: Seletores -->
-            <section id="selectores-css" class="content-section" hidden>
-                <h1>Seletores e Hierarquia</h1>
-                <p>Define quais elementos HTML receberão determinado estilo.</p>
-                <hr />
-                <h2>Exemplos de seletores e pseudo-elementos</h2>
-                <pre><code class="language-css">
+        <!-- Seção 4: Seletores -->
+        <section id="selectores-css" class="content-section" hidden>
+            <h1>Seletores e Hierarquia</h1>
+            <p>Define quais elementos HTML receberão determinado estilo.</p>
+            <hr />
+            <pre><code class="language-css">
 a:hover { color: red; }
 p::first-letter { font-size: 200%; }
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- SEÇÃO 5: Box Model -->
-            <section id="box-model-css" class="content-section" hidden>
-                <h1>Box Model e Layout</h1>
-                <p>Todo elemento é uma caixa com conteúdo, padding, border e margin.</p>
-                <hr />
-                <h2>Exemplo prático</h2>
-                <pre><code class="language-css">
+        <!-- Seção 5: Box Model -->
+        <section id="box-model-css" class="content-section" hidden>
+            <h1>Box Model e Layout</h1>
+            <p>Todo elemento é uma caixa com conteúdo, padding, border e margin.</p>
+            <hr />
+            <pre><code class="language-css">
 div {
     width: 200px;
     padding: 10px;
     border: 2px solid #000;
     margin: 20px;
 }
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- SEÇÃO 6: Layout avançado -->
-            <section id="layout-avancado-css" class="content-section" hidden>
-                <h1>Layout Avançado: Flexbox, Grid e Responsividade</h1>
-                <p>Ferramentas modernas para layouts flexíveis e adaptáveis.</p>
-                <hr />
-                <pre><code class="language-css">
+        <!-- Seção 6: Layout avançado -->
+        <section id="layout-avancado-css" class="content-section" hidden>
+            <h1>Layout Avançado: Flexbox, Grid e Responsividade</h1>
+            <p>Ferramentas modernas para layouts flexíveis e adaptáveis.</p>
+            <hr />
+            <pre><code class="language-css">
 .container { display: flex; }
 .grid-container { display: grid; }
 @media (max-width: 768px) { .grid-container { grid-template-columns: 1fr; } }
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- SEÇÃO 7: Animações -->
-            <section id="animacoes-transicoes-css" class="content-section" hidden>
-                <h1>Animações e Transições</h1>
-                <p>Permitem criar efeitos visuais suaves sem JavaScript.</p>
-                <hr />
-                <h2>Transições e animações com keyframes</h2>
-                <pre><code class="language-css">
+        <!-- Seção 7: Animações e transições -->
+        <section id="animacoes-transicoes-css" class="content-section" hidden>
+            <h1>Animações e Transições</h1>
+            <p>Permitem criar efeitos visuais suaves sem JavaScript.</p>
+            <hr />
+            <pre><code class="language-css">
 button { transition: background-color 0.3s; }
 @keyframes exemplo { 0% { opacity: 0; } 100% { opacity: 1; } }
-                </code></pre>
-            </section>
+            </code></pre>
+        </section>
 
-            <!-- SEÇÃO 8: Boas práticas -->
-            <section id="boas-praticas-css" class="content-section" hidden>
-                <h1>Boas Práticas de CSS</h1>
-                <p>Organização, nomenclatura e performance para código limpo e sustentável.</p>
-                <hr />
-                <ul>
-                    <li>Evite !important e seletores profundos.</li>
-                    <li>Prefira classes reutilizáveis e variáveis CSS.</li>
-                    <li>Comente blocos de layout e responsividade.</li>
-                </ul>
-            </section>
+        <!-- Seção 8: Boas práticas -->
+        <section id="boas-praticas-css" class="content-section" hidden>
+            <h1>Boas Práticas de CSS</h1>
+            <p>Organização, nomenclatura e performance para código limpo e sustentável.</p>
+            <hr />
+            <ul>
+                <li>Evite !important e seletores profundos.</li>
+                <li>Prefira classes reutilizáveis e variáveis CSS.</li>
+                <li>Comente blocos de layout e responsividade.</li>
+            </ul>
+        </section>
 
-            <!-- SEÇÃO FINAL: Voltar -->
-            <section id="voltar-index" class="content-section" hidden>
-                <h2>Voltar para a página inicial</h2>
-                <button onclick="window.location.href='index.html'">← Voltar para Index</button>
-            </section>
-        </main>
-    </div>
+        <!-- Seção final para voltar à página inicial -->
+        <section id="voltar-index" class="content-section" hidden>
+            <h2>Voltar para a página inicial</h2>
+            <button onclick="window.location.href='index.html'">← Voltar para Index</button>
+        </section>
+    </main>
 
-    <!-- =========================================================
-         RODAPÉ — exibe status da aplicação
-    ========================================================= -->
+    <!-- Rodapé com status -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
-    <!-- =========================================================
-         SCRIPT PRINCIPAL — controla interações e navegação dinâmica
-    ========================================================= -->
+    <!-- Script principal do projeto -->
     <script src="script.js"></script>
 </body>
 </html>

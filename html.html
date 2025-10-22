@@ -12,82 +12,81 @@
             <span>Aprenda Web - VSLearn</span>
             <button id="menu-toggle">☰</button>
         </header>
-        <div class="container">
-            <!-- Painel lateral: simula o explorador de arquivos do VSCode -->
-            <aside class="sidebar">
-                <div class="explorer-title">EXPLORADOR</div>
-                <ul class="file-tree">
-                    <!-- Pasta HTML aberta -->
-                    <li class="folder open">
-                        <div class="folder-header file-link" data-href="index.html">
-                            <span class="folder-arrow">▸</span>
-                            <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg" />
-                            <span class="file-name">HTML</span>
-                        </div>
-                        <!-- Subitens do módulo HTML -->
-                        <ul class="sub-items visible" data-module="html">
-                            <li class="file">
-                                <div class="file-link active" data-content-id="o-que-e" data-status="Aprendendo o que é HTML">
-                                    <span class="file-name">O que é</span>
-                                </div>
-                            </li>
-                            <li class="file">
-                                <div class="file-link" data-content-id="historia-evolucao" data-status="Explorando a História e Evolução do HTML">
-                                    <span class="file-name">História / Evolução</span>
-                                </div>
-                            </li>
-                            <li class="file">
-                                <div class="file-link" data-content-id="como-funciona" data-status="Entendendo como o HTML funciona por dentro">
-                                    <span class="file-name">Como funciona</span>
-                                </div>
-                            </li>
-                            <li class="file">
-                                <div class="file-link" data-content-id="sintaxe-basica" data-status="Aprendendo a sintaxe básica do HTML">
-                                    <span class="file-name">Parte básica / Sintaxe</span>
-                                </div>
-                            </li>
-                            <li class="file">
-                                <div class="file-link" data-content-id="exemplos-praticos" data-status="Vendo exemplos práticos de HTML">
-                                    <span class="file-name">Exemplos práticos</span>
-                                </div>
-                            </li>
-                            <li class="file">
-                                <div class="file-link" data-content-id="boas-praticas" data-status="Boas práticas e dicas de HTML">
-                                    <span class="file-name">Boas práticas / Dicas</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- Slide switch para alternar tema -->
-                <div class="theme-switch">
-                    <label class="switch">
-                        <input type="checkbox" id="theme-toggle" />
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="switch-label">Tema Claro</span>
-                </div>
-            </aside>
-            <!-- Área principal de conteúdo -->
-            <main class="content">
-                <!-- SEÇÃO 1 -->
-                <section id="o-que-e" class="content-section active">
-                    <h1>HTML: A Linguagem de Estrutura Semântica</h1>
-                    <p>
-                        HTML (HyperText Markup Language) é a base da web, responsável por estruturar conteúdo, enquanto CSS define estilo e JavaScript adiciona interatividade.
-                    </p>
-                    <hr />
-
-                    <h2>Elementos, Tags e Atributos</h2>
-                    <ul>
-                        <li><strong>Elemento:</strong> unidade de conteúdo delimitada por tags &lt;início&gt; e &lt;/fim&gt;.</li>
-                        <li><strong>Tag:</strong> marcação usada para criar elementos.</li>
-                        <li><strong>Atributo:</strong> informação extra em pares <code>nome="valor"</code>.</li>
-                        <li><strong>Conteúdo:</strong> o que está entre as tags de abertura e fechamento.</li>
+        <!-- Painel lateral: simula o explorador de arquivos do VSCode -->
+        <aside class="sidebar">
+            <div class="explorer-title">EXPLORADOR</div>
+            <ul class="file-tree">
+                <!-- Pasta HTML aberta -->
+                <li class="folder open">
+                    <div class="folder-header file-link" data-href="index.html">
+                        <span class="folder-arrow">▸</span>
+                        <img src="icons/html.svg" alt="Ícone HTML" class="icon-svg" />
+                        <span class="file-name">HTML</span>
+                    </div>
+                    <!-- Subitens do módulo HTML -->
+                    <ul class="sub-items visible" data-module="html">
+                        <li class="file">
+                            <div class="file-link active" data-content-id="o-que-e" data-status="Aprendendo o que é HTML">
+                                <span class="file-name">O que é</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="historia-evolucao" data-status="Explorando a História e Evolução do HTML">
+                                <span class="file-name">História / Evolução</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="como-funciona" data-status="Entendendo como o HTML funciona por dentro">
+                                <span class="file-name">Como funciona</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="sintaxe-basica" data-status="Aprendendo a sintaxe básica do HTML">
+                                <span class="file-name">Parte básica / Sintaxe</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="exemplos-praticos" data-status="Vendo exemplos práticos de HTML">
+                                <span class="file-name">Exemplos práticos</span>
+                            </div>
+                        </li>
+                        <li class="file">
+                            <div class="file-link" data-content-id="boas-praticas" data-status="Boas práticas e dicas de HTML">
+                                <span class="file-name">Boas práticas / Dicas</span>
+                            </div>
+                        </li>
                     </ul>
+                </li>
+            </ul>
+            <!-- Slide switch para alternar tema -->
+            <div class="theme-switch">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle" />
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-label">Tema Claro</span>
+            </div>
+        </aside>
+        <!-- Área principal de conteúdo -->
+        <main class="content">
+            <!-- SEÇÃO 1 -->
+            <section id="o-que-e" class="content-section active">
+                <h1>HTML: A Linguagem de Estrutura Semântica</h1>
+                <p>
+                    HTML (HyperText Markup Language) é a base da web, responsável por estruturar conteúdo, enquanto CSS define estilo e JavaScript adiciona interatividade.
+                </p>
+                <hr />
 
-                    <h2>Estrutura Básica de um Documento</h2>
-                    <pre><code class="language-html">
+                <h2>Elementos, Tags e Atributos</h2>
+                <ul>
+                    <li><strong>Elemento:</strong> unidade de conteúdo delimitada por tags &lt;início&gt; e &lt;/fim&gt;.</li>
+                    <li><strong>Tag:</strong> marcação usada para criar elementos.</li>
+                    <li><strong>Atributo:</strong> informação extra em pares <code>nome="valor"</code>.</li>
+                    <li><strong>Conteúdo:</strong> o que está entre as tags de abertura e fechamento.</li>
+                </ul>
+
+                <h2>Estrutura Básica de um Documento</h2>
+                <pre><code class="language-html">
                 &lt;!DOCTYPE html&gt;
                 &lt;html lang="pt-BR"&gt;
                 &lt;head&gt;
@@ -101,160 +100,153 @@
                 &lt;/html&gt;
                     </code></pre>
 
-                    <h2>Elementos Semânticos</h2>
-                    <ul>
-                        <li>&lt;header&gt; – cabeçalho</li>
-                        <li>&lt;nav&gt; – menu de navegação</li>
-                        <li>&lt;main&gt; – conteúdo principal</li>
-                        <li>&lt;section&gt; – seção temática</li>
-                        <li>&lt;article&gt; – conteúdo independente</li>
-                        <li>&lt;footer&gt; – rodapé</li>
-                    </ul>
+                <h2>Elementos Semânticos</h2>
+                <ul>
+                    <li>&lt;header&gt; – cabeçalho</li>
+                    <li>&lt;nav&gt; – menu de navegação</li>
+                    <li>&lt;main&gt; – conteúdo principal</li>
+                    <li>&lt;section&gt; – seção temática</li>
+                    <li>&lt;article&gt; – conteúdo independente</li>
+                    <li>&lt;footer&gt; – rodapé</li>
+                </ul>
 
-                    <h2>Tipos de Elementos</h2>
-                    <ul>
-                        <li><strong>Block:</strong> ocupa linha inteira (ex: &lt;div&gt;, &lt;p&gt;).</li>
-                        <li><strong>Inline:</strong> ocupa apenas o espaço necessário (ex: &lt;span&gt;, &lt;a&gt;).</li>
-                    </ul>
+                <h2>Tipos de Elementos</h2>
+                <ul>
+                    <li><strong>Block:</strong> ocupa linha inteira (ex: &lt;div&gt;, &lt;p&gt;).</li>
+                    <li><strong>Inline:</strong> ocupa apenas o espaço necessário (ex: &lt;span&gt;, &lt;a&gt;).</li>
+                </ul>
 
-                    <h2>Boas Práticas</h2>
-                    <ul>
-                        <li>Use elementos semânticos sempre que possível.</li>
-                        <li>Mantenha código limpo e indentado.</li>
-                        <li>Imagens devem ter <strong>alt</strong> para acessibilidade.</li>
-                        <li>Evite <strong>div</strong> ou <strong>span</strong> quando elementos semânticos forem adequados.</li>
-                    </ul>
+                <h2>Boas Práticas</h2>
+                <ul>
+                    <li>Use elementos semânticos sempre que possível.</li>
+                    <li>Mantenha código limpo e indentado.</li>
+                    <li>Imagens devem ter <strong>alt</strong> para acessibilidade.</li>
+                    <li>Evite <strong>div</strong> ou <strong>span</strong> quando elementos semânticos forem adequados.</li>
+                </ul>
 
-                    <h2>Exemplos Práticos</h2>
-                    <pre><code class="language-html">
+                <h2>Exemplos Práticos</h2>
+                <pre><code class="language-html">
                 &lt;a href="pagina.html"&gt;Link&lt;/a&gt;
                 &lt;img src="logo.png" alt="Logo"&gt;
                 &lt;button type="button"&gt>Clique&lt;/button&gt;
                     </code></pre>
 
-                    <h2>Recursos de Referência</h2>
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">MDN Web Docs</a></li>
-                        <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools HTML</a></li>
-                    </ul>
-                </section>
+                <h2>Recursos de Referência</h2>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">MDN Web Docs</a></li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools HTML</a></li>
+                </ul>
+            </section>
 
-                <!-- SEÇÃO 2 -->
-                <section id="historia-evolucao" class="content-section" hidden>
-                    <h1>A Evolução para a Semântica: De HTML 1.0 a HTML5</h1>
-                    <p>
-                        O HTML foi criado por Tim Berners-Lee no início dos anos 90 como uma forma simples de compartilhar documentos científicos. Desde então, evoluiu continuamente para atender às novas necessidades da web.
-                    </p>
-                    <hr />
+            <!-- SEÇÃO 2 -->
+            <section id="historia-evolucao" class="content-section" hidden>
+                <h1>A Evolução para a Semântica: De HTML 1.0 a HTML5</h1>
+                <p>
+                    O HTML foi criado por Tim Berners-Lee no início dos anos 90 como uma forma simples de compartilhar documentos científicos. Desde então, evoluiu continuamente para atender às novas necessidades da web.
+                </p>
+                <hr />
 
-                    <h2>HTML 1.0 e 2.0</h2>
-                    <p>
-                        As primeiras versões eram muito básicas: permitiam formatação simples, links e listas. Não havia preocupação com semântica, acessibilidade ou multimídia.
-                    </p>
+                <h2>HTML 1.0 e 2.0</h2>
+                <p>
+                    As primeiras versões eram muito básicas: permitiam formatação simples, links e listas. Não havia preocupação com semântica, acessibilidade ou multimídia.
+                </p>
 
-                    <h2>O Surgimento do XHTML</h2>
-                    <p>
-                        No início dos anos 2000, surgiu o <strong>XHTML</strong> — uma tentativa de combinar HTML com regras rigorosas do XML. Tornou-se preciso, mas pouco prático devido à sua rigidez na sintaxe.
-                    </p>
+                <h2>O Surgimento do XHTML</h2>
+                <p>No início dos anos 2000, surgiu o <strong>XHTML</strong> — uma tentativa de combinar HTML com regras rigorosas do XML. Tornou-se preciso, mas pouco prático devido à sua rigidez na sintaxe.</p>
 
-                    <h2>HTML4 e a Transição para Semântica</h2>
-                    <p>
-                        HTML4 trouxe melhorias como suporte a folhas de estilo externas, scripts e frames. Apesar disso, a semântica ainda era limitada, e muitas estruturas eram definidas com <code>&lt;div&gt;</code> genéricos.
-                    </p>
+                <h2>HTML4 e a Transição para Semântica</h2>
+                <p>HTML4 trouxe melhorias como suporte a folhas de estilo externas, scripts e frames. Apesar disso, a semântica ainda era limitada, e muitas estruturas eram definidas com <code>&lt;div&gt;</code> genéricos.</p>
 
-                    <h2>O Paradigma do HTML5 (2014)</h2>
-                    <p>
-                        O <strong>HTML5</strong> representou uma revolução: introduziu novos elementos semânticos, suporte nativo a multimídia e APIs que ampliam as capacidades do navegador, reduzindo a dependência de plugins.
-                    </p>
+                <h2>O Paradigma do HTML5 (2014)</h2>
+                <p>O <strong>HTML5</strong> representou uma revolução: introduziu novos elementos semânticos, suporte nativo a multimídia e APIs que ampliam as capacidades do navegador, reduzindo a dependência de plugins.</p>
 
-                    <h2>Novos Recursos e Elementos</h2>
-                    <ul>
-                        <li><strong>Estruturais:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></li>
-                        <li><strong>Multimídia:</strong> <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code></li>
-                        <li><strong>Formulários modernos:</strong> <code>input type="email"</code>, <code>date</code>, <code>range</code>, <code>number</code></li>
-                        <li><strong>APIs nativas:</strong> Canvas, Local Storage, Geolocation, Drag & Drop, Web Workers</li>
-                        <li><strong>Semântica e acessibilidade:</strong> <code>role</code>, <code>aria-label</code>, melhor compatibilidade com leitores de tela</li>
-                    </ul>
+                <h2>Novos Recursos e Elementos</h2>
+                <ul>
+                    <li><strong>Estruturais:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></li>
+                    <li><strong>Multimídia:</strong> <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code></li>
+                    <li><strong>Formulários modernos:</strong> <code>input type="email"</code>, <code>date</code>, <code>range</code>, <code>number</code></li>
+                    <li><strong>APIs nativas:</strong> Canvas, Local Storage, Geolocation, Drag & Drop, Web Workers</li>
+                    <li><strong>Semântica e acessibilidade:</strong> <code>role</code>, <code>aria-label</code>, melhor compatibilidade com leitores de tela</li>
+                </ul>
 
-                    <h2>Organizações e Padrões</h2>
-                    <ul>
-                        <li><strong>W3C</strong> – define e publica especificações oficiais.</li>
-                        <li><strong>WHATWG</strong> – mantém o HTML como padrão vivo, continuamente atualizado.</li>
-                        <li><strong>Impacto:</strong> padronização garante compatibilidade entre navegadores e boas práticas de desenvolvimento.</li>
-                    </ul>
+                <h2>Organizações e Padrões</h2>
+                <ul>
+                    <li><strong>W3C</strong> – define e publica especificações oficiais.</li>
+                    <li><strong>WHATWG</strong> – mantém o HTML como padrão vivo, continuamente atualizado.</li>
+                    <li><strong>Impacto:</strong> padronização garante compatibilidade entre navegadores e boas práticas de desenvolvimento.</li>
+                </ul>
 
-                    <h2>Resumo da Evolução</h2>
-                    <ul>
-                        <li><strong>HTML1:</strong> estrutura básica e links simples.</li>
-                        <li><strong>HTML2/3:</strong> tabelas, formulários e formatação limitada.</li>
-                        <li><strong>XHTML:</strong> sintaxe rígida, compatível com XML.</li>
-                        <li><strong>HTML4:</strong> folhas de estilo externas, scripts, mas pouca semântica.</li>
-                        <li><strong>HTML5:</strong> semântica avançada, multimídia nativa, APIs modernas, acessibilidade.</li>
-                    </ul>
-                </section>
+                <h2>Resumo da Evolução</h2>
+                <ul>
+                    <li><strong>HTML1:</strong> estrutura básica e links simples.</li>
+                    <li><strong>HTML2/3:</strong> tabelas, formulários e formatação limitada.</li>
+                    <li><strong>XHTML:</strong> sintaxe rígida, compatível com XML.</li>
+                    <li><strong>HTML4:</strong> folhas de estilo externas, scripts, mas pouca semântica.</li>
+                    <li><strong>HTML5:</strong> semântica avançada, multimídia nativa, APIs modernas, acessibilidade.</li>
+                </ul>
+            </section>
 
-                <!-- SEÇÃO 3 -->
-                <section id="como-funciona" class="content-section" hidden>
-                    <h1>O Motor do Navegador: Request, Parse e Render</h1>
-                    <p>
-                        O navegador transforma o código HTML, CSS e JavaScript em páginas visuais interativas. Esse processo envolve múltiplas etapas coordenadas entre si.
-                    </p>
-                    <hr />
+            <!-- SEÇÃO 3 -->
+            <section id="como-funciona" class="content-section" hidden>
+                <h1>O Motor do Navegador: Request, Parse e Render</h1>
+                <p>
+                    O navegador transforma o código HTML, CSS e JavaScript em páginas visuais interativas. Esse processo envolve múltiplas etapas coordenadas entre si.
+                </p>
+                <hr />
 
-                    <h2>Etapas de Renderização</h2>
-                    <ol>
-                        <li><strong>Requisição:</strong> o navegador solicita o documento HTML ao servidor.</li>
-                        <li><strong>Parsing do HTML:</strong> o navegador lê o HTML e constrói o <strong>DOM (Document Object Model)</strong>.</li>
-                        <li><strong>Parsing do CSS:</strong> arquivos CSS são processados para criar o <strong>CSSOM (CSS Object Model)</strong>.</li>
-                        <li><strong>Render Tree:</strong> DOM + CSSOM combinados formam a árvore que define o que será exibido na tela.</li>
-                        <li><strong>Layout:</strong> cálculo das posições e tamanhos dos elementos.</li>
-                        <li><strong>Pintura:</strong> pixels são desenhados na tela.</li>
-                        <li><strong>Composição:</strong> camadas de elementos são combinadas para gerar a página final.</li>
-                    </ol>
+                <h2>Etapas de Renderização</h2>
+                <ol>
+                    <li><strong>Requisição:</strong> o navegador solicita o documento HTML ao servidor.</li>
+                    <li><strong>Parsing do HTML:</strong> o navegador lê o HTML e constrói o <strong>DOM (Document Object Model)</strong>.</li>
+                    <li><strong>Parsing do CSS:</strong> arquivos CSS são processados para criar o <strong>CSSOM (CSS Object Model)</strong>.</li>
+                    <li><strong>Render Tree:</strong> DOM + CSSOM combinados formam a árvore que define o que será exibido na tela.</li>
+                    <li><strong>Layout:</strong> cálculo das posições e tamanhos dos elementos.</li>
+                    <li><strong>Pintura:</strong> pixels são desenhados na tela.</li>
+                    <li><strong>Composição:</strong> camadas de elementos são combinadas para gerar a página final.</li>
+                </ol>
 
-                    <h2>O Papel do DOM</h2>
-                    <p>
-                        O DOM é uma representação em memória da estrutura da página. Ele permite que JavaScript acesse, modifique ou remova elementos em tempo real.
-                    </p>
+                <h2>O Papel do DOM</h2>
+                <p>
+                    O DOM é uma representação em memória da estrutura da página. Ele permite que JavaScript acesse, modifique ou remova elementos em tempo real.
+                </p>
 
-                    <h2>Interação com CSS e JS</h2>
-                    <ul>
-                        <li>O CSS influencia diretamente o layout e a renderização de cada elemento.</li>
-                        <li>O JavaScript pode alterar o DOM dinamicamente, disparando reflows e repaints.</li>
-                        <li>Scripts externos podem bloquear o parsing do HTML; usar <code>defer</code> ou <code>async</code> melhora a performance.</li>
-                    </ul>
+                <h2>Interação com CSS e JS</h2>
+                <ul>
+                    <li>O CSS influencia diretamente o layout e a renderização de cada elemento.</li>
+                    <li>O JavaScript pode alterar o DOM dinamicamente, disparando reflows e repaints.</li>
+                    <li>Scripts externos podem bloquear o parsing do HTML; usar <code>defer</code> ou <code>async</code> melhora a performance.</li>
+                </ul>
 
-                    <!-- Exemplo: uso de defer -->
-                    <pre><code class="language-html">
+                <!-- Exemplo: uso de defer -->
+                <pre><code class="language-html">
                 &lt;!-- Carrega script após parsing do HTML --&gt;
                 &lt;script src="script.js" defer&gt;&lt;/script&gt;
                     </code></pre>
 
-                    <h2>Boas Práticas de Performance</h2>
-                    <ul>
-                        <li>Minimizar arquivos CSS e JS.</li>
-                        <li>Usar <code>defer</code> ou <code>async</code> para scripts.</li>
-                        <li>Evitar manipulações excessivas do DOM em loops.</li>
-                        <li>Carregar imagens otimizadas e usar lazy loading.</li>
-                    </ul>
+                <h2>Boas Práticas de Performance</h2>
+                <ul>
+                    <li>Minimizar arquivos CSS e JS.</li>
+                    <li>Usar <code>defer</code> ou <code>async</code> para scripts.</li>
+                    <li>Evitar manipulações excessivas do DOM em loops.</li>
+                    <li>Carregar imagens otimizadas e usar lazy loading.</li>
+                </ul>
 
-                    <h2>Resumo</h2>
-                    <p>
-                        Navegadores modernos realizam centenas de operações rapidamente para transformar HTML, CSS e JavaScript em páginas interativas, garantindo performance e experiência do usuário.
-                    </p>
-                </section>
+                <h2>Resumo</h2>
+                <p>
+                    Navegadores modernos realizam centenas de operações rapidamente para transformar HTML, CSS e JavaScript em páginas interativas, garantindo performance e experiência do usuário.
+                </p>
+            </section>
 
+            <!-- SEÇÃO 4 -->
+            <section id="sintaxe-basica" class="content-section" hidden>
+                <h1>Parte Básica e Sintaxe do HTML</h1>
+                <p>
+                    O HTML é composto por elementos delimitados por tags de abertura e fechamento. A hierarquia e o uso correto dessas tags definem a estrutura do documento.
+                </p>
+                <hr />
 
-                <!-- SEÇÃO 4 -->
-                <section id="sintaxe-basica" class="content-section" hidden>
-                    <h1>Parte Básica e Sintaxe do HTML</h1>
-                    <p>
-                        O HTML é composto por elementos delimitados por tags de abertura e fechamento. A hierarquia e o uso correto dessas tags definem a estrutura do documento.
-                    </p>
-                    <hr />
-
-                    <h2>Estrutura Padrão</h2>
-                    <pre><code class="language-html">
+                <h2>Estrutura Padrão</h2>
+                <pre><code class="language-html">
                 &lt;!DOCTYPE html&gt;
                 &lt;html lang="pt-BR"&gt;
                 &lt;head&gt;
@@ -269,8 +261,8 @@
                 &lt;/html&gt;
                     </code></pre>
 
-                    <h2>Elementos Comuns</h2>
-                    <pre><code class="language-html">
+                <h2>Elementos Comuns</h2>
+                <pre><code class="language-html">
                 &lt;h1&gt;Título&lt;/h1&gt;
                 &lt;p&gt;Parágrafo&lt;/p&gt;
                 &lt;img src="imagem.jpg" alt="Descrição da imagem"&gt;
@@ -280,43 +272,43 @@
                 &lt;span&gt;Texto inline&lt;/span&gt;
                     </code></pre>
 
-                    <h2>Principais Elementos</h2>
-                    <ul>
-                        <li><code>&lt;html&gt;</code> – raiz do documento.</li>
-                        <li><code>&lt;head&gt;</code> – metadados, links de CSS, scripts e título.</li>
-                        <li><code>&lt;body&gt;</code> – conteúdo visível na página.</li>
-                        <li><code>&lt;header&gt;</code> – cabeçalho ou topo da página/seção.</li>
-                        <li><code>&lt;footer&gt;</code> – rodapé da página ou seção.</li>
-                        <li><code>&lt;section&gt;</code> – seção temática de conteúdo.</li>
-                        <li><code>&lt;article&gt;</code> – conteúdo independente, como post ou notícia.</li>
-                        <li><code>&lt;nav&gt;</code> – área de navegação.</li>
-                        <li><code>&lt;main&gt;</code> – conteúdo principal da página.</li>
-                    </ul>
+                <h2>Principais Elementos</h2>
+                <ul>
+                    <li><code>&lt;html&gt;</code> – raiz do documento.</li>
+                    <li><code>&lt;head&gt;</code> – metadados, links de CSS, scripts e título.</li>
+                    <li><code>&lt;body&gt;</code> – conteúdo visível na página.</li>
+                    <li><code>&lt;header&gt;</code> – cabeçalho ou topo da página/seção.</li>
+                    <li><code>&lt;footer&gt;</code> – rodapé da página ou seção.</li>
+                    <li><code>&lt;section&gt;</code> – seção temática de conteúdo.</li>
+                    <li><code>&lt;article&gt;</code> – conteúdo independente, como post ou notícia.</li>
+                    <li><code>&lt;nav&gt;</code> – área de navegação.</li>
+                    <li><code>&lt;main&gt;</code> – conteúdo principal da página.</li>
+                </ul>
 
-                    <h2>Atributos Importantes</h2>
-                    <ul>
-                        <li><code>id</code> – identifica um elemento de forma única.</li>
-                        <li><code>class</code> – agrupa elementos para estilo ou script.</li>
-                        <li><code>src</code> – fonte de imagens, scripts ou vídeos.</li>
-                        <li><code>alt</code> – descrição alternativa de imagens (acessibilidade).</li>
-                        <li><code>href</code> – link de referência.</li>
-                        <li><code>title</code> – texto descritivo exibido ao passar o mouse.</li>
-                    </ul>
+                <h2>Atributos Importantes</h2>
+                <ul>
+                    <li><code>id</code> – identifica um elemento de forma única.</li>
+                    <li><code>class</code> – agrupa elementos para estilo ou script.</li>
+                    <li><code>src</code> – fonte de imagens, scripts ou vídeos.</li>
+                    <li><code>alt</code> – descrição alternativa de imagens (acessibilidade).</li>
+                    <li><code>href</code> – link de referência.</li>
+                    <li><code>title</code> – texto descritivo exibido ao passar o mouse.</li>
+                </ul>
 
-                    <h2>Resumo</h2>
-                    <p>
-                        A sintaxe básica do HTML é simples, mas poderosa: combinando elementos, atributos e hierarquia correta, você cria páginas estruturadas, acessíveis e prontas para CSS e JavaScript.
-                    </p>
-                </section>
+                <h2>Resumo</h2>
+                <p>
+                    A sintaxe básica do HTML é simples, mas poderosa: combinando elementos, atributos e hierarquia correta, você cria páginas estruturadas, acessíveis e prontas para CSS e JavaScript.
+                </p>
+            </section>
 
-                <!-- SEÇÃO 5 -->
-                <section id="exemplos-praticos" class="content-section" hidden>
-                    <h1>Exemplos Práticos de Estruturação</h1>
-                    <p>Modelos reais de uso de elementos semânticos em páginas web modernas.</p>
-                    <hr />
+            <!-- SEÇÃO 5 -->
+            <section id="exemplos-praticos" class="content-section" hidden>
+                <h1>Exemplos Práticos de Estruturação</h1>
+                <p>Modelos reais de uso de elementos semânticos em páginas web modernas.</p>
+                <hr />
 
-                    <h2>Exemplo 1: Página de Artigo</h2>
-                    <pre><code class="language-html">
+                <h2>Exemplo 1: Página de Artigo</h2>
+                <pre><code class="language-html">
                 &lt;article&gt;
                 &lt;header&gt;
                     &lt;h1&gt;Título do Artigo&lt;/h1&gt;
@@ -329,8 +321,8 @@
                 &lt;/article&gt;
                     </code></pre>
 
-                    <h2>Exemplo 2: Estrutura de Layout Completa</h2>
-                    <pre><code class="language-html">
+                <h2>Exemplo 2: Estrutura de Layout Completa</h2>
+                <pre><code class="language-html">
                 &lt;header&gt;Cabeçalho&lt;/header&gt;
                 &lt;nav&gt;
                 &lt;ul&gt;
@@ -344,8 +336,8 @@
                 &lt;footer&gt;Rodapé&lt;/footer&gt;
                     </code></pre>
 
-                    <h2>Exemplo 3: Formulário Semântico</h2>
-                    <pre><code class="language-html">
+                <h2>Exemplo 3: Formulário Semântico</h2>
+                <pre><code class="language-html">
                 &lt;form action="/enviar" method="post"&gt;
                 &lt;label for="nome"&gt;Nome:&lt;/label&gt;
                 &lt;input type="text" id="nome" name="nome"&gt;
@@ -360,8 +352,8 @@
                 &lt;/form&gt;
                     </code></pre>
 
-                    <h2>Exemplo 4: Lista de Conteúdos com Imagens</h2>
-                    <pre><code class="language-html">
+                <h2>Exemplo 4: Lista de Conteúdos com Imagens</h2>
+                <pre><code class="language-html">
                 &lt;section&gt;
                 &lt;h2&gt;Galeria de Produtos&lt;/h2&gt;
                 &lt;ul&gt;
@@ -377,84 +369,83 @@
                 &lt;/section&gt;
                     </code></pre>
 
-                    <h2>Dicas de Estruturação</h2>
-                    <ul>
-                        <li>Use sempre elementos semânticos para melhorar SEO e acessibilidade.</li>
-                        <li>Header, nav, main, aside e footer ajudam a organizar visualmente e logicamente o conteúdo.</li>
-                        <li>Labels em formulários melhoram a usabilidade e acessibilidade.</li>
-                        <li>Imagens devem sempre ter atributo <code>alt</code> descritivo.</li>
-                    </ul>
-                </section>
+                <h2>Dicas de Estruturação</h2>
+                <ul>
+                    <li>Use sempre elementos semânticos para melhorar SEO e acessibilidade.</li>
+                    <li>Header, nav, main, aside e footer ajudam a organizar visualmente e logicamente o conteúdo.</li>
+                    <li>Labels em formulários melhoram a usabilidade e acessibilidade.</li>
+                    <li>Imagens devem sempre ter atributo <code>alt</code> descritivo.</li>
+                </ul>
+            </section>
 
-                <!-- SEÇÃO 6 -->
-                <section id="boas-praticas" class="content-section" hidden>
-                    <h1>Boas Práticas e Dicas de HTML</h1>
-                    <p>Diretrizes fundamentais para escrever código limpo, acessível e duradouro.</p>
-                    <hr />
+            <!-- SEÇÃO 6 -->
+            <section id="boas-praticas" class="content-section" hidden>
+                <h1>Boas Práticas e Dicas de HTML</h1>
+                <p>Diretrizes fundamentais para escrever código limpo, acessível e duradouro.</p>
+                <hr />
 
-                    <h2>1. Estrutura e Organização</h2>
-                    <ul>
-                        <li>Mantenha indentação consistente para facilitar leitura.</li>
-                        <li>Feche todas as tags corretamente.</li>
-                        <li>Organize o código em seções lógicas: cabeçalho, conteúdo principal, sidebar, rodapé.</li>
-                        <li>Separe CSS e JavaScript em arquivos externos sempre que possível.</li>
-                    </ul>
+                <h2>1. Estrutura e Organização</h2>
+                <ul>
+                    <li>Mantenha indentação consistente para facilitar leitura.</li>
+                    <li>Feche todas as tags corretamente.</li>
+                    <li>Organize o código em seções lógicas: cabeçalho, conteúdo principal, sidebar, rodapé.</li>
+                    <li>Separe CSS e JavaScript em arquivos externos sempre que possível.</li>
+                </ul>
 
-                    <h2>2. Semântica</h2>
-                    <ul>
-                        <li>Use elementos semânticos (<code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, etc.) no lugar de <code>&lt;div&gt;</code> genéricos.</li>
-                        <li>Evite sobreposição de elementos semânticos ou hierarquias confusas.</li>
-                    </ul>
+                <h2>2. Semântica</h2>
+                <ul>
+                    <li>Use elementos semânticos (<code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, etc.) no lugar de <code>&lt;div&gt;</code> genéricos.</li>
+                    <li>Evite sobreposição de elementos semânticos ou hierarquias confusas.</li>
+                </ul>
 
-                    <h2>3. Acessibilidade</h2>
-                    <ul>
-                        <li>Forneça <code>alt</code> descritivo para todas as imagens.</li>
-                        <li>Use labels em formulários (<code>&lt;label&gt;</code> ligado ao <code>id</code> do input).</li>
-                        <li>Garanta contraste de cores suficiente para textos e elementos visuais.</li>
-                        <li>Utilize atributos ARIA quando necessário para leitores de tela.</li>
-                    </ul>
+                <h2>3. Acessibilidade</h2>
+                <ul>
+                    <li>Forneça <code>alt</code> descritivo para todas as imagens.</li>
+                    <li>Use labels em formulários (<code>&lt;label&gt;</code> ligado ao <code>id</code> do input).</li>
+                    <li>Garanta contraste de cores suficiente para textos e elementos visuais.</li>
+                    <li>Utilize atributos ARIA quando necessário para leitores de tela.</li>
+                </ul>
 
-                    <h2>4. Performance</h2>
-                    <ul>
-                        <li>Minimize requisições externas desnecessárias.</li>
-                        <li>Otimize imagens e recursos multimídia.</li>
-                        <li>Use <code>defer</code> ou <code>async</code> em scripts externos.</li>
-                        <li>Evite manipulações excessivas do DOM durante a carga da página.</li>
-                    </ul>
+                <h2>4. Performance</h2>
+                <ul>
+                    <li>Minimize requisições externas desnecessárias.</li>
+                    <li>Otimize imagens e recursos multimídia.</li>
+                    <li>Use <code>defer</code> ou <code>async</code> em scripts externos.</li>
+                    <li>Evite manipulações excessivas do DOM durante a carga da página.</li>
+                </ul>
 
-                    <h2>5. SEO (Otimização para Motores de Busca)</h2>
-                    <ul>
-                        <li>Utilize apenas um <code>&lt;h1&gt;</code> por página.</li>
-                        <li>Use hierarquia lógica de títulos (<code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>).</li>
-                        <li>Inclua metadados relevantes no <code>&lt;head&gt;</code> (<code>&lt;title&gt;</code>, <code>&lt;meta description&gt;</code>).</li>
-                        <li>Use links amigáveis e textos descritivos em <code>&lt;a&gt;</code>.</li>
-                    </ul>
+                <h2>5. SEO (Otimização para Motores de Busca)</h2>
+                <ul>
+                    <li>Utilize apenas um <code>&lt;h1&gt;</code> por página.</li>
+                    <li>Use hierarquia lógica de títulos (<code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>).</li>
+                    <li>Inclua metadados relevantes no <code>&lt;head&gt;</code> (<code>&lt;title&gt;</code>, <code>&lt;meta description&gt;</code>).</li>
+                    <li>Use links amigáveis e textos descritivos em <code>&lt;a&gt;</code>.</li>
+                </ul>
 
-                    <h2>6. Validação</h2>
-                    <ul>
-                        <li>Use o <a href="https://validator.w3.org/" target="_blank">Validador do W3C</a> para garantir conformidade com os padrões.</li>
-                        <li>Corrija erros de marcação antes de publicar.</li>
-                        <li>Valide HTML, CSS e acessibilidade para compatibilidade máxima entre navegadores.</li>
-                    </ul>
+                <h2>6. Validação</h2>
+                <ul>
+                    <li>Use o <a href="https://validator.w3.org/" target="_blank">Validador do W3C</a> para garantir conformidade com os padrões.</li>
+                    <li>Corrija erros de marcação antes de publicar.</li>
+                    <li>Valide HTML, CSS e acessibilidade para compatibilidade máxima entre navegadores.</li>
+                </ul>
 
-                    <h2>7. Evolução Contínua</h2>
-                    <p>
-                        HTML é um padrão vivo — novas práticas, elementos e APIs são adicionadas constantemente. Mantenha-se atualizado com recursos como:
-                    </p>
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">MDN Web Docs</a></li>
-                        <li><a href="https://www.w3.org/TR/html/" target="_blank">Especificações W3C</a></li>
-                        <li>Blogs e newsletters de desenvolvimento web</li>
-                    </ul>
+                <h2>7. Evolução Contínua</h2>
+                <p>
+                    HTML é um padrão vivo — novas práticas, elementos e APIs são adicionadas constantemente. Mantenha-se atualizado com recursos como:
+                </p>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">MDN Web Docs</a></li>
+                    <li><a href="https://www.w3.org/TR/html/" target="_blank">Especificações W3C</a></li>
+                    <li>Blogs e newsletters de desenvolvimento web</li>
+                </ul>
 
-                    <h2>Resumo</h2>
-                    <p>
-                        Seguindo estas boas práticas, seu HTML será limpo, acessível, otimizado para SEO e compatível com navegadores modernos, garantindo uma base sólida para qualquer projeto web.
-                    </p>
-                </section>
+                <h2>Resumo</h2>
+                <p>
+                    Seguindo estas boas práticas, seu HTML será limpo, acessível, otimizado para SEO e compatível com navegadores modernos, garantindo uma base sólida para qualquer projeto web.
+                </p>
+            </section>
+        </main>
 
-            </main>
-        </div>
         <!-- Barra inferior (status) -->
         <footer class="bottombar">
             <span>Status: Pronto</span>
