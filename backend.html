@@ -6,23 +6,42 @@
     <title>VSCode Simulado - Backend</title>
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+    <!-- =========================================================
+         TOPO (Top Bar)
+         ========================================================= -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn (Backend)</span>
+        <!-- Botão para abrir/fechar sidebar no modo mobile -->
         <button id="menu-toggle">☰</button>
     </header>
 
+    <!-- =========================================================
+         CONTAINER PRINCIPAL (Sidebar + Conteúdo)
+         ========================================================= -->
     <div class="container">
+
+        <!-- =========================================================
+             SIDEBAR (Explorador de módulos e temas)
+             ========================================================= -->
         <aside class="sidebar">
             <div class="explorer-title">EXPLORADOR</div>
+
+            <!-- Árvore de arquivos / módulos -->
             <ul class="file-tree">
                 <li class="folder open">
+                    <!-- Cabeçalho da pasta principal (Backend) -->
                     <div class="folder-header file-link" data-href="index.html">
                         <span class="folder-arrow">▸</span>
                         <img src="icons/database.svg" alt="Ícone Backend" class="icon-svg" />
                         <span class="file-name">Backend</span>
                     </div>
+
+                    <!-- Subitens (lições e seções do módulo Backend) -->
                     <ul class="sub-items visible" data-module="backend">
+
+                        <!-- Cada item representa uma seção do conteúdo -->
                         <li class="file">
                             <div class="file-link active" data-content-id="introducao-backend" data-status="Introdução ao Backend">
                                 <span class="file-name">Introdução</span>
@@ -67,6 +86,9 @@
                 </li>
             </ul>
 
+            <!-- =========================================================
+                 Switch de Tema (Claro/Escuro)
+                 ========================================================= -->
             <div class="theme-switch">
                 <label class="switch">
                     <input type="checkbox" id="theme-toggle" />
@@ -76,8 +98,14 @@
             </div>
         </aside>
 
+        <!-- =========================================================
+             CONTEÚDO PRINCIPAL
+             ========================================================= -->
         <main class="content">
-            <!-- SEÇÃO 1 -->
+
+            <!-- =====================================================
+                 SEÇÃO 1 - Introdução ao Backend
+                 ===================================================== -->
             <section id="introducao-backend" class="content-section active">
                 <h1>Introdução ao Backend</h1>
                 <p>
@@ -100,7 +128,9 @@
                 </ul>
             </section>
 
-            <!-- SEÇÃO 2 -->
+            <!-- =====================================================
+                 SEÇÃO 2 - Node.js
+                 ===================================================== -->
             <section id="nodejs-backend" class="content-section" hidden>
                 <h1>Node.js</h1>
                 <p>Node.js é um runtime JavaScript para servidor, baseado em V8, permitindo criar aplicações rápidas e escaláveis.</p>
@@ -127,7 +157,9 @@ server.listen(port, () => console.log(`Servidor rodando em http://localhost:${po
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 3 -->
+            <!-- =====================================================
+                 SEÇÃO 3 - Express.js
+                 ===================================================== -->
             <section id="express-backend" class="content-section" hidden>
                 <h1>Express.js</h1>
                 <p>Framework minimalista para Node.js que facilita rotas, middlewares e APIs.</p>
@@ -154,7 +186,9 @@ app.get('/busca', (req, res) => {
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 4 -->
+            <!-- =====================================================
+                 SEÇÃO 4 - Banco de Dados
+                 ===================================================== -->
             <section id="banco-dados-backend" class="content-section" hidden>
                 <h1>Bancos de Dados</h1>
                 <p>O backend utiliza bancos de dados para armazenar e consultar informações de forma organizada.</p>
@@ -179,7 +213,9 @@ Usuario.create({nome: 'Ana', idade: 25});
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 5 -->
+            <!-- =====================================================
+                 SEÇÃO 5 - APIs REST
+                 ===================================================== -->
             <section id="apis-rest-backend" class="content-section" hidden>
                 <h1>APIs REST</h1>
                 <p>APIs permitem que sistemas distintos se comuniquem de forma padronizada.</p>
@@ -199,7 +235,9 @@ app.get('/usuarios', (req, res) => {
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 6 -->
+            <!-- =====================================================
+                 SEÇÃO 6 - Autenticação
+                 ===================================================== -->
             <section id="autenticacao-backend" class="content-section" hidden>
                 <h1>Autenticação e Segurança</h1>
                 <p>Garantir acesso seguro e proteger dados do usuário é fundamental.</p>
@@ -221,7 +259,9 @@ app.get('/dashboard', auth, (req, res) => res.send('Bem-vindo!'));
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 7 -->
+            <!-- =====================================================
+                 SEÇÃO 7 - Middlewares
+                 ===================================================== -->
             <section id="middleware-backend" class="content-section" hidden>
                 <h1>Middlewares</h1>
                 <p>Middlewares são funções que interceptam requisições antes de chegarem às rotas.</p>
@@ -241,7 +281,9 @@ app.use((err, req, res, next) => {
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 8 -->
+            <!-- =====================================================
+                 SEÇÃO 8 - Boas Práticas
+                 ===================================================== -->
             <section id="boas-praticas-backend" class="content-section" hidden>
                 <h1>Boas Práticas de Backend</h1>
                 <ul>
@@ -262,6 +304,9 @@ app.use((err, req, res, next) => {
                 </ul>
             </section>
 
+            <!-- =====================================================
+                 SEÇÃO FINAL - Voltar à página inicial
+                 ===================================================== -->
             <section id="voltar-index" class="content-section" hidden>
                 <h2>Voltar para a página inicial</h2>
                 <button onclick="window.location.href='index.html'">← Voltar para Index</button>
@@ -269,10 +314,16 @@ app.use((err, req, res, next) => {
         </main>
     </div>
 
+    <!-- =========================================================
+         RODAPÉ (Status inferior)
+         ========================================================= -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
+    <!-- =========================================================
+         SCRIPT PRINCIPAL
+         ========================================================= -->
     <script src="script.js"></script>
 </body>
 </html>

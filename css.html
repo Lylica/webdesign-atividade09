@@ -7,25 +7,34 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Barra superior fixa -->
+    <!-- =========================================================
+         BARRA SUPERIOR FIXA — exibe o título e o botão de menu
+    ========================================================= -->
     <header class="topbar">
         <span>Aprenda Web - VSLearn (CSS)</span>
         <button id="menu-toggle">☰</button>
     </header>
 
     <div class="container">
-        <!-- Painel lateral: explorador de arquivos -->
+        <!-- =========================================================
+             SIDEBAR — explorador de arquivos lateral
+             Contém o módulo "CSS" com suas seções temáticas
+        ========================================================= -->
         <aside class="sidebar">
             <div class="explorer-title">EXPLORADOR</div>
+
+            <!-- Estrutura de pastas e arquivos -->
             <ul class="file-tree">
-                <!-- Pasta CSS aberta -->
+                <!-- Pasta principal: CSS -->
                 <li class="folder open">
+                    <!-- Cabeçalho da pasta -->
                     <div class="folder-header file-link" data-href="index.html">
                         <span class="folder-arrow">▸</span>
                         <img src="icons/css.svg" alt="Ícone CSS" class="icon-svg" />
                         <span class="file-name">CSS</span>
                     </div>
-                    <!-- Subitens do módulo CSS -->
+
+                    <!-- Lista de subitens (lições do módulo CSS) -->
                     <ul class="sub-items visible" data-module="css">
                         <li class="file">
                             <div class="file-link active" data-content-id="o-que-e-css" data-status="Aprendendo o que é CSS">
@@ -70,7 +79,10 @@
                     </ul>
                 </li>
             </ul>
-            <!-- Slide switch para alternar tema -->
+
+            <!-- =========================================================
+                 SWITCH DE TEMA — alterna entre modo escuro e claro
+            ========================================================= -->
             <div class="theme-switch">
                 <label class="switch">
                     <input type="checkbox" id="theme-toggle" />
@@ -80,9 +92,12 @@
             </div>
         </aside>
 
-        <!-- Área principal de conteúdo -->
+        <!-- =========================================================
+             ÁREA DE CONTEÚDO PRINCIPAL
+             Cada <section> representa uma lição de CSS
+        ========================================================= -->
         <main class="content">
-            <!-- SEÇÃO 1 -->
+            <!-- SEÇÃO 1: Introdução -->
             <section id="o-que-e-css" class="content-section active">
                 <h1>CSS: Estilo e Apresentação de Páginas</h1>
                 <p>
@@ -117,46 +132,26 @@ h1 {
                 </ul>
             </section>
 
-            <!-- SEÇÃO 2 -->
+            <!-- SEÇÃO 2: História e evolução -->
             <section id="historia-evolucao-css" class="content-section" hidden>
                 <h1>História e Evolução do CSS</h1>
                 <p>CSS surgiu em 1996, criado por Håkon Wium Lie, para separar conteúdo de apresentação e facilitar manutenção de sites.</p>
                 <hr />
-
-                <h2>CSS1 (1996)</h2>
-                <p>Definia estilos básicos: cores, fontes, alinhamentos e espaçamentos.</p>
-
-                <h2>CSS2 (1998)</h2>
-                <p>Adicionou posicionamento, z-index, media types e pseudo-classes.</p>
-
-                <h2>CSS3 (2000 em diante)</h2>
-                <p>Modularizado em módulos, trouxe: flexbox, grid, transições, animações, sombras, gradientes, media queries e variáveis.</p>
-
-                <h2>Impacto e Padrões</h2>
+                <h2>CSS1, CSS2 e CSS3</h2>
+                <p>Resumo da evolução das versões com novas funcionalidades e modularização.</p>
                 <ul>
-                    <li><strong>W3C:</strong> define especificações oficiais.</li>
-                    <li><strong>WHATWG:</strong> mantém interoperabilidade e boas práticas.</li>
-                    <li><strong>Navegadores:</strong> implementam CSS parcialmente; módulos podem ter suporte variável.</li>
+                    <li><strong>CSS1:</strong> estilos básicos (cores, fontes, espaçamentos).</li>
+                    <li><strong>CSS2:</strong> posicionamento, z-index e media types.</li>
+                    <li><strong>CSS3:</strong> flexbox, grid, animações e variáveis.</li>
                 </ul>
             </section>
 
-            <!-- SEÇÃO 3 -->
+            <!-- SEÇÃO 3: Sintaxe -->
             <section id="sintaxe-basica-css" class="content-section" hidden>
                 <h1>Sintaxe Básica do CSS</h1>
-                <p>
-                    Um conjunto de regras CSS é composto por <strong>seletores</strong> e <strong>declarações</strong>. Cada declaração define propriedades e valores.
-                </p>
+                <p>Composta por seletores e declarações com propriedades e valores.</p>
                 <hr />
-
-                <h2>Estrutura</h2>
-                <pre><code class="language-css">
-seletor {
-    propriedade: valor;
-    propriedade: valor;
-}
-                </code></pre>
-
-                <h2>Exemplo</h2>
+                <h2>Exemplo de regra CSS</h2>
                 <pre><code class="language-css">
 p {
     color: #333;
@@ -164,67 +159,26 @@ p {
     line-height: 1.5;
 }
                 </code></pre>
-
-                <h2>Formas de Inserção</h2>
-                <ul>
-                    <li>Inline: <code>&lt;p style="color:red;"&gt;Texto&lt;/p&gt;</code></li>
-                    <li>Internal: dentro de &lt;style&gt;&lt;/style&gt; no &lt;head&gt;</li>
-                    <li>External: arquivo <code>style.css</code> vinculado com &lt;link&gt;</li>
-                </ul>
             </section>
 
-            <!-- SEÇÃO 4 -->
+            <!-- SEÇÃO 4: Seletores -->
             <section id="selectores-css" class="content-section" hidden>
                 <h1>Seletores e Hierarquia</h1>
-                <p>Seletores identificam elementos HTML aos quais serão aplicados estilos.</p>
+                <p>Define quais elementos HTML receberão determinado estilo.</p>
                 <hr />
-
-                <h2>Tipos de Seletores</h2>
-                <ul>
-                    <li><strong>Universal:</strong> <code>*</code> seleciona todos os elementos.</li>
-                    <li><strong>Elemento:</strong> <code>p</code>, <code>h1</code></li>
-                    <li><strong>Classe:</strong> <code>.menu</code></li>
-                    <li><strong>ID:</strong> <code>#principal</code></li>
-                    <li><strong>Descendente:</strong> <code>div p</code></li>
-                    <li><strong>Filho:</strong> <code>div > p</code></li>
-                    <li><strong>Pseudo-classes:</strong> <code>:hover</code>, <code>:focus</code></li>
-                    <li><strong>Pseudo-elementos:</strong> <code>::before</code>, <code>::after</code></li>
-                </ul>
-
-                <h2>Exemplo de Pseudo-classes</h2>
+                <h2>Exemplos de seletores e pseudo-elementos</h2>
                 <pre><code class="language-css">
-a:hover {
-    color: red;
-    text-decoration: underline;
-}
-                </code></pre>
-
-                <h2>Exemplo de Pseudo-elementos</h2>
-                <pre><code class="language-css">
-p::first-letter {
-    font-size: 200%;
-    color: #007acc;
-}
+a:hover { color: red; }
+p::first-letter { font-size: 200%; }
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 5 -->
+            <!-- SEÇÃO 5: Box Model -->
             <section id="box-model-css" class="content-section" hidden>
                 <h1>Box Model e Layout</h1>
-                <p>
-                    Todo elemento é uma caixa retangular composta por conteúdo, padding, border e margin.
-                </p>
+                <p>Todo elemento é uma caixa com conteúdo, padding, border e margin.</p>
                 <hr />
-
-                <h2>Estrutura do Box Model</h2>
-                <ul>
-                    <li><strong>Content:</strong> conteúdo do elemento.</li>
-                    <li><strong>Padding:</strong> espaço interno entre conteúdo e borda.</li>
-                    <li><strong>Border:</strong> borda do elemento.</li>
-                    <li><strong>Margin:</strong> espaço externo entre elementos.</li>
-                </ul>
-
-                <h2>Exemplo Prático</h2>
+                <h2>Exemplo prático</h2>
                 <pre><code class="language-css">
 div {
     width: 200px;
@@ -233,139 +187,45 @@ div {
     margin: 20px;
 }
                 </code></pre>
-
-                <h2>Propriedades de Layout</h2>
-                <ul>
-                    <li><strong>Display:</strong> block, inline, inline-block, flex, grid.</li>
-                    <li><strong>Position:</strong> static, relative, absolute, fixed, sticky.</li>
-                    <li><strong>Float e Clear:</strong> posicionamento tradicional de colunas.</li>
-                </ul>
             </section>
 
-            <!-- SEÇÃO 6 -->
+            <!-- SEÇÃO 6: Layout avançado -->
             <section id="layout-avancado-css" class="content-section" hidden>
                 <h1>Layout Avançado: Flexbox, Grid e Responsividade</h1>
-                <p>
-                    CSS moderno permite criar layouts complexos e responsivos sem hacks.
-                </p>
+                <p>Ferramentas modernas para layouts flexíveis e adaptáveis.</p>
                 <hr />
-
-                <h2>Flexbox</h2>
                 <pre><code class="language-css">
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item {
-    flex: 1;
-    margin: 5px;
-}
-                </code></pre>
-
-                <h2>Grid</h2>
-                <pre><code class="language-css">
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-                </code></pre>
-
-                <h2>Responsividade</h2>
-                <pre><code class="language-css">
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-}
+.container { display: flex; }
+.grid-container { display: grid; }
+@media (max-width: 768px) { .grid-container { grid-template-columns: 1fr; } }
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 7 -->
+            <!-- SEÇÃO 7: Animações -->
             <section id="animacoes-transicoes-css" class="content-section" hidden>
                 <h1>Animações e Transições</h1>
-                <p>
-                    CSS permite animar propriedades e criar efeitos visuais suaves sem JavaScript.
-                </p>
+                <p>Permitem criar efeitos visuais suaves sem JavaScript.</p>
                 <hr />
-
-                <h2>Transições</h2>
+                <h2>Transições e animações com keyframes</h2>
                 <pre><code class="language-css">
-button {
-    background-color: blue;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: red;
-}
-                </code></pre>
-
-                <h2>Animações</h2>
-                <pre><code class="language-css">
-@keyframes exemplo {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(50px); }
-    100% { transform: translateX(0); }
-}
-
-div {
-    animation: exemplo 2s infinite;
-}
+button { transition: background-color 0.3s; }
+@keyframes exemplo { 0% { opacity: 0; } 100% { opacity: 1; } }
                 </code></pre>
             </section>
 
-            <!-- SEÇÃO 8 -->
+            <!-- SEÇÃO 8: Boas práticas -->
             <section id="boas-praticas-css" class="content-section" hidden>
                 <h1>Boas Práticas de CSS</h1>
-                <p>Diretrizes para escrever CSS limpo, eficiente e sustentável.</p>
+                <p>Organização, nomenclatura e performance para código limpo e sustentável.</p>
                 <hr />
-
-                <h2>1. Organização</h2>
                 <ul>
-                    <li>Use indentação consistente.</li>
-                    <li>Separe regras por seções: reset, tipografia, layout, componentes, responsividade.</li>
-                    <li>Evite !important desnecessários.</li>
-                </ul>
-
-                <h2>2. Nomenclatura</h2>
-                <ul>
-                    <li>Use nomes significativos para classes e IDs.</li>
-                    <li>Considere metodologias como BEM para maior clareza.</li>
-                </ul>
-
-                <h2>3. Reutilização</h2>
-                <ul>
-                    <li>Evite duplicação de regras.</li>
-                    <li>Use variáveis CSS e custom properties.</li>
-                    <li>Crie classes utilitárias para estilos repetidos.</li>
-                </ul>
-
-                <h2>4. Performance</h2>
-                <ul>
-                    <li>Minimize arquivos CSS e combine quando possível.</li>
-                    <li>Evite seletores muito complexos ou profundos.</li>
-                    <li>Otimize imagens, fontes e ícones.</li>
-                </ul>
-
-                <h2>5. Acessibilidade e SEO</h2>
-                <ul>
-                    <li>Considere contraste de cores e legibilidade.</li>
-                    <li>Use animações e transições de forma moderada.</li>
-                    <li>Prefira cores, fontes e layouts consistentes para melhorar UX.</li>
-                </ul>
-
-                <h2>6. Referências</h2>
-                <ul>
-                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">MDN Web Docs CSS</a></li>
-                    <li><a href="https://www.w3.org/Style/CSS/" target="_blank">Especificações W3C</a></li>
-                    <li>Artigos e blogs de desenvolvimento front-end modernos.</li>
+                    <li>Evite !important e seletores profundos.</li>
+                    <li>Prefira classes reutilizáveis e variáveis CSS.</li>
+                    <li>Comente blocos de layout e responsividade.</li>
                 </ul>
             </section>
 
-            <!-- Botão para voltar ao Index -->
+            <!-- SEÇÃO FINAL: Voltar -->
             <section id="voltar-index" class="content-section" hidden>
                 <h2>Voltar para a página inicial</h2>
                 <button onclick="window.location.href='index.html'">← Voltar para Index</button>
@@ -373,12 +233,16 @@ div {
         </main>
     </div>
 
-    <!-- Barra inferior -->
+    <!-- =========================================================
+         RODAPÉ — exibe status da aplicação
+    ========================================================= -->
     <footer class="bottombar">
         <span>Status: Pronto</span>
     </footer>
 
-    <!-- Script principal -->
+    <!-- =========================================================
+         SCRIPT PRINCIPAL — controla interações e navegação dinâmica
+    ========================================================= -->
     <script src="script.js"></script>
 </body>
 </html>
